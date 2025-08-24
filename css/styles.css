@@ -404,3 +404,84 @@ h1,h2,h3{ font-family:"Space Grotesk", Inter, Arial }
 /* Navbar logo */
 .brand img{ width:28px; height:28px; border-radius:999px; box-shadow:none }
 
+
+
+/* === Frumo: spacing & footer normalization (patch) === */
+
+/* 1) Uniform section rhythm */
+.section{ padding:64px 0; }
+.section .container > * + *{ margin-top:28px; } /* consistent vertical rhythm for siblings */
+
+/* 2) Headings and paragraph spacing */
+h2{ font-size:clamp(28px,4vw,36px); line-height:1.1; margin:0 0 18px; font-weight:800; }
+h3{ font-size:clamp(18px,2.2vw,22px); margin:0 0 10px; font-weight:700; }
+p{ margin:0; }
+p + p{ margin-top:10px; }
+
+/* 3) Cards a bit roomier */
+.card{ padding:22px; border-radius:18px; }
+.grid.cards{ gap:20px; }
+
+/* 4) Contract/action rail spacing inside sections (generic) */
+.section .container .rail,
+.section .container .bar,
+.section .container .actions{ margin-top:22px; }
+
+/* 5) Footer clean layout & spacing */
+footer{ padding:40px 0 56px; border-top:1px solid rgba(255,255,255,.08); }
+footer .container{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
+footer nav{ display:flex; gap:18px; flex-wrap:wrap; }
+footer small{ opacity:.8; }
+
+/* 6) Sticky Buy Bar: avoid overlap with footer/content */
+html{ scroll-padding-top:80px; scroll-padding-bottom:120px; }
+body{ padding-bottom:96px; }              /* space for sticky bar */
+.buybar{ bottom:16px; }
+.buybar .inner{ height:56px; padding:10px 16px; }
+.buybar .btn{ height:40px; }
+@media (max-width:640px){
+  body{ padding-bottom:84px; }
+  .buybar .inner{ height:52px; }
+  .buybar .btn{ height:38px; }
+}
+
+/* 7) Ensure hero visuals never overlap following sections */
+.hero-visual{ margin-bottom:8px; }
+
+
+
+/* === Frumo: final spacing & footer normalization (baked-in) === */
+
+/* Uniform section rhythm */
+.section{ padding:72px 0; }
+.section .container > * + *{ margin-top:28px; } /* consistent vertical rhythm */
+
+/* How to Buy: cards & action rail */
+.grid.cards{ gap:20px; }
+.card{ padding:26px; border-radius:18px; }
+.section .container .rail,
+.section .container .bar,
+.section .container .actions{ margin-top:24px; }
+
+/* Footer layout */
+footer{ padding:48px 0 84px; border-top:1px solid rgba(255,255,255,.10); }
+footer .container{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
+footer nav{ display:flex; gap:18px; flex-wrap:wrap; }
+footer small{ opacity:.85; }
+
+/* Sticky Buy Bar safe area */
+html{ scroll-padding-top:80px; scroll-padding-bottom:120px; }
+body{ padding-bottom:110px; }
+.buybar{ bottom:18px; }
+.buybar .inner{ height:56px; padding:10px 16px; }
+.buybar .btn{ height:40px; }
+
+@media (max-width:640px){
+  body{ padding-bottom:96px; }
+  .buybar .inner{ height:52px; }
+  .buybar .btn{ height:38px; }
+}
+
+/* Ensure hero visuals never overlap following sections */
+.hero-visual{ margin-bottom:12px; }
+
