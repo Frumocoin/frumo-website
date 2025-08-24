@@ -143,13 +143,6 @@ a{color:inherit; text-decoration:none}
 .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:8px; }
 
 /* Mascot: image only — no panel / border */
-.hero-art{
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  width: min(980px, 96%);
-  margin-top: 18px;
-}
 
 /* Starfield + vignette background */
 .hero-art {
