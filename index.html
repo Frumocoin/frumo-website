@@ -4,60 +4,94 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Frumo — the people’s frog-dog</title>
-  <link rel="icon" href="/assets/logo.svg" />
+  <meta name="description" content="Frumo — the crowned frog-dog. People-powered, meme-fueled, premium vibes." />
+  <meta property="og:title" content="Frumo — the people’s frog-dog" />
+  <meta property="og:description" content="Crowned in chaos. Built for community. To the moon." />
+  <meta property="og:image" content="/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2318c964'/%3E%3Ctext x='50' y='63' font-size='60' text-anchor='middle' fill='white' font-family='Inter,system-ui,-apple-system,Segoe UI,Roboto'%3EF%3C/text%3E%3C/svg%3E">
+
+  <!-- Base fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Meme-friendly + premium pairing -->
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
-  <!-- subtle background -->
-  <div class="bg">
-    <div class="twinkle"></div>
-    <div class="orb"></div>
+  <script>
+    /* Replace these as you go live */
+    window.FRUMO = {
+      tokenAddress: "PASTE_TOKEN_ADDRESS",
+      raydiumUrl: "https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_TOKEN",
+      dexScreenerUrl: "https://dexscreener.com/solana/PASTE_POOL_OR_TOKEN",
+      solscanUrl: "https://solscan.io/token/PASTE_TOKEN",
+      telegramUrl: "https://t.me/FrumoCoin",
+      twitterUrl: "https://x.com/FrumoCoin"
+    };
+  </script>
+
+  <!-- Animated background layers -->
+  <div class="bg-wrap">
+    <div class="bg-grad-1"></div>
+    <div class="bg-grad-2"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb"></div>
   </div>
 
-  <!-- Doge-like nav: brand left, links center, buy right -->
-  <nav class="nav">
-    <div class="nav-inner container">
-      <a class="brand" href="#top">
-        <img src="/assets/logo.svg" alt="Frumo logo" />
-        <span>Frumo</span>
-      </a>
-      <div class="links">
-        <a href="#about">About</a>
-        <a href="#tokenomics">Tokenomics</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#community">Community</a>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="#buy">Buy</a>
-      </div>
-    </div>
-  </nav>
+<nav class="nav">
+  <div class="nav-inner container">
+    <a class="brand" href="#top">
+      <img src="/assets/logo.svg" alt="Frumo logo" />
+      <span>Frumo</span>
+    </a>
 
-  <!-- Tight hero -->
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#community">Community</a>
+    </div>
+
+    <div class="cta">
+      <a class="btn primary" href="#buy">Buy</a>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Premium hero -->
   <header class="hero container" id="top">
-    <div class="brand-pill">Born of Doge &amp; Pepe • Crowned in Chaos</div>
-    <h1 class="giant gradient">F R U M O</h1>
-    <p class="tagline">the people’s frog-dog</p>
+    <div class="hero-stack">
+      <div class="brand-pill">Born of Doge &amp; Pepe • Crowned in Chaos</div>
 
-    <div class="hero-cta">
-      <a class="btn primary" href="#buy">Buy $FRUMO</a>
-      <a class="btn ghost" id="scanBtn" target="_blank" rel="noreferrer">Solscan</a>
-      <a class="btn ghost" id="tgBtn" target="_blank" rel="noreferrer">Telegram</a>
-      <a class="btn ghost" id="xBtn" target="_blank" rel="noreferrer">X / Twitter</a>
-    </div>
+      <h1 class="giant wordspaced gradient-text">F R U M O</h1>
+      <p class="tagline">the people’s frog-dog</p>
 
-    <div class="hero-art">
-      <img class="mascot" src="/assets/mascot.png" alt="Frumo mascot" />
+      <div class="hero-cta">
+        <a class="btn primary big" href="#buy">Buy $FRUMO</a>
+        <a class="btn glass" id="scanBtn" target="_blank" rel="noreferrer">Solscan</a>
+        <a class="btn glass" id="tgBtn" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn glass" id="xBtn" target="_blank" rel="noreferrer">X / Twitter</a>
+      </div>
+
+      <div class="hero-art">
+		<img class="mascot" src="/assets/mascot.png" alt="Frumo mascot" />
+	  </div>
+
     </div>
   </header>
 
   <section class="section" id="about">
     <div class="container">
-      <h2>About</h2>
-      <p class="lead">Frumo is the crowned frog-dog — loyal like Doge, chaotic like Pepe, and built for the people.</p>
+      <h2>Who is Frumo?</h2>
+      <p class="lead">
+        In a hidden valley where rivers sing and meadows bark, Doge met Pepe.
+        From their bond came a tiny heir with a golden crown and a heart full of joy: <strong>Frumo</strong> —
+        half ribbit, half bark, all heart.
+      </p>
     </div>
   </section>
 
@@ -70,6 +104,19 @@
         <div class="item"><h3>Decimals</h3><p>9</p></div>
         <div class="item"><h3>Chain</h3><p>Solana</p></div>
       </div>
+      <div class="card panel">
+        <table class="tokentable">
+          <thead><tr><th>Category</th><th>Allocation</th><th>Tokens</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Community & Liquidity</td><td>50%</td><td>34,710,000,000</td><td>Bonding curve & Raydium LP</td></tr>
+            <tr><td>Marketing & Growth</td><td>20%</td><td>13,884,000,000</td><td>Influencers, listings, promos</td></tr>
+            <tr><td>Team & Dev</td><td>10%</td><td>6,942,000,000</td><td>Public multi-sig, transparent</td></tr>
+            <tr><td>Treasury / Ecosystem</td><td>10%</td><td>6,942,000,000</td><td>Partnerships, utilities</td></tr>
+            <tr><td>Airdrops & Rewards</td><td>10%</td><td>6,942,000,000</td><td>Memes, quests, community</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Post-launch: LP will be locked and mint authority revoked.</p>
+      </div>
     </div>
   </section>
 
@@ -77,10 +124,11 @@
     <div class="container">
       <h2>Roadmap</h2>
       <div class="steps">
-        <div class="step"><div class="num">1</div><strong>Site & Socials</strong><p>Launch brand kit, X, TG.</p></div>
-        <div class="step"><div class="num">2</div><strong>Token Launch</strong><p>Pump.fun → Raydium.</p></div>
-        <div class="step"><div class="num">3</div><strong>Trust</strong><p>Lock LP, revoke mint.</p></div>
-        <div class="step"><div class="num">4</div><strong>Grow</strong><p>Listings, micro-influencers.</p></div>
+        <div class="step"><div class="num">1</div><strong>Site & Socials</strong><p>Launch website, X and Telegram.</p></div>
+        <div class="step"><div class="num">2</div><strong>Token Launch</strong><p>Create on Pump.fun → migrate to Raydium.</p></div>
+        <div class="step"><div class="num">3</div><strong>Trust</strong><p>Lock LP, revoke mint, verify on aggregators.</p></div>
+        <div class="step"><div class="num">4</div><strong>Grow</strong><p>Micro-influencers, meme contests, quests.</p></div>
+        <div class="step"><div class="num">5</div><strong>$10M MC</strong><p>First milestone push with sustained hype.</p></div>
       </div>
     </div>
   </section>
@@ -88,52 +136,48 @@
   <section class="section" id="community">
     <div class="container">
       <h2>Community</h2>
-      <p class="muted">Join the fam — memes, quests, and good vibes.</p>
+      <p class="muted">Join the Frumo fam — share memes, ideas, and vibes.</p>
       <div class="actions">
         <a class="btn primary" id="joinTg" target="_blank" rel="noreferrer">Join Telegram</a>
-        <a class="btn ghost" id="followX" target="_blank" rel="noreferrer">Follow on X</a>
+        <a class="btn glass" id="followX" target="_blank" rel="noreferrer">Follow on X</a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="buy">
+  <section class="section" id="how">
     <div class="container">
-      <h2>Buy</h2>
-      <div class="buy card">
+      <h2>How to Buy</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><strong>Get Phantom</strong><p>Install wallet, fund with SOL.</p></div>
+        <div class="step"><div class="num">2</div><strong>Open Raydium</strong><p>Use swap link with $FRUMO preloaded.</p></div>
+        <div class="step"><div class="num">3</div><strong>Swap SOL → FRUMO</strong><p>Adjust slippage if needed, confirm.</p></div>
+      </div>
+
+      <div id="buy" class="card buy panel">
         <div>
           <div class="muted">Contract</div>
           <code id="addr">PASTE_TOKEN_ADDRESS</code>
         </div>
         <div class="actions">
           <a class="btn primary" id="raydiumBtn" target="_blank" rel="noreferrer">Swap on Raydium</a>
-          <button class="btn ghost" id="copyBtn">Copy</button>
-          <a class="btn ghost" id="chartBtn" target="_blank" rel="noreferrer">Chart</a>
+          <button class="btn glass" id="copyBtn">Copy Address</button>
+          <a class="btn glass" id="chartBtn" target="_blank" rel="noreferrer">View Chart</a>
         </div>
       </div>
+      <p class="note">Not financial advice. Crypto is volatile. Do your own research.</p>
     </div>
   </section>
 
   <footer class="footer">
-    <div class="container fgrid">
-      <a class="brand" href="#top"><img src="/assets/logo.svg" alt="Frumo logo"/><span>Frumo</span></a>
-      <div class="links"><a href="#tokenomics">Tokenomics</a><a href="#roadmap">Roadmap</a><a href="#community">Community</a></div>
-      <div class="copy">© <span id="year"></span> Frumo</div>
+    <div class="container footer-grid">
+      <div class="brand"><img src="/assets/logo.svg" alt="Frumo logo"/><span>Frumo</span></div>
+      <div class="links">
+        <a href="#tokenomics">Tokenomics</a><a href="#roadmap">Roadmap</a><a href="#community">Community</a>
+      </div>
+      <div class="copy">© <span id="year"></span> Frumo. All vibes reserved.</div>
     </div>
   </footer>
 
-  <script>
-    // tiny premium touches: nav shadow on scroll, smooth anchor, current year
-    const nav = document.querySelector('.nav');
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 6);
-    onScroll(); window.addEventListener('scroll', onScroll);
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-      });
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="/js/app.js"></script>
 </body>
 </html>
