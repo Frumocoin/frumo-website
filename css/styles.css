@@ -100,7 +100,8 @@ a{color:inherit; text-decoration:none}
   display: inline-flex; align-items: center; gap: 10px;
   font-weight: 800;
 }
-.nav .brand img{ width: 34px; height: 34px }
+
+.nav .brand img { width: 32px; height: 32px; border-radius: 8px; }
 
 .nav .links{
   justify-self: center;
@@ -144,49 +145,38 @@ a{color:inherit; text-decoration:none}
 
 /* Mascot: image only — no panel / border */
 
-/* Starfield + vignette background */
+/* Smaller mascot for balance */
+.mascot {
+  display: block;
+  max-width: 65%;
+  height: auto;
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, .3));
+  transition: transform 0.3s ease;
+}
+.mascot:hover { transform: scale(1.02); }
+
+/* Starfield + vignette behind mascot (no border) */
 .hero-art {
   position: relative;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(0,0,0,0.32) 0%, transparent 70%);
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 0;
 }
-
 .hero-art::before {
   content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-  background-size: 50px 50px;
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 46px 46px;
+  opacity: 0.45;
   animation: starFloat 40s linear infinite;
-  z-index: 0;
-  opacity: 0.5;
+  pointer-events: none;
 }
+.hero-art img { position: relative; z-index: 1; }
+@keyframes starFloat { from { transform: translateY(0); } to { transform: translateY(-100%); } }
 
-.hero-art img {
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes starFloat {
-  from { transform: translateY(0); }
-  to { transform: translateY(-100%); }
-}
-
-
-.mascot {
-  display: block;
-  max-width: 65%; /* Reduced from 90% */
-  height: auto;
-  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, .3));
-  transition: transform 0.3s ease;
-}
-.mascot:hover {
-  transform: scale(1.02);
-}
 
 
 /* ===== Sections ===== */
