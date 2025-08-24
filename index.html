@@ -19,6 +19,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/styles.css" />
+<style id="frumo-hotfix">
+/* === FRUMO HOTFIX (cache-busted + !important) === */
+.hero{ overflow: visible !important; }
+.hero-visual{ margin: 24px auto 0 !important; background: transparent !important; border: none !important; box-shadow: none !important; width: 100% !important; }
+.hero-visual .mascot, .hero-visual > img.mascot{ display:block !important; margin:0 auto !important; width:min(520px,58vw) !important; height:auto !important; object-fit:contain !important; filter:drop-shadow(0 22px 44px rgba(0,0,0,.6)) !important; animation: floatY 7s ease-in-out infinite !important; }
+.brand img{ width:28px !important; height:28px !important; border-radius:999px !important; box-shadow:none !important; }
+</style>
 </head>
 <body>
   <script>
@@ -44,7 +51,7 @@
 <nav class="nav">
   <div class="nav-inner container">
     <a class="brand" href="#top">
-      <img src="assets/logo_plain.svg" alt="Frumo logo" />
+      <img src="assets/logo_plain.svg?v=3" alt="Frumo logo" />
       <span>Frumo</span>
     </a>
 
@@ -94,6 +101,7 @@
     </div>
   </div>
 </section>
+
 
 
 
@@ -183,7 +191,7 @@
 
   <footer class="footer">
     <div class="container footer-grid">
-      <div class="brand"><img src="assets/logo_plain.svg" alt="Frumo logo"/><span>Frumo</span></div>
+      <div class="brand"><img src="assets/logo_plain.svg?v=3" alt="Frumo logo"/><span>Frumo</span></div>
       <div class="links">
         <a href="#tokenomics">Tokenomics</a><a href="#roadmap">Roadmap</a><a href="#community">Community</a>
       </div>
