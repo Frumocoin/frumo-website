@@ -101,7 +101,7 @@ a{color:inherit; text-decoration:none}
   font-weight: 800;
 }
 
-.nav .brand img { width: 32px; height: 32px; border-radius: 8px; }
+.nav .brand img{width:28px;height:28px;border-radius:999px;display:block;box-shadow:none}
 
 .nav .links{
   justify-self: center;
@@ -112,7 +112,7 @@ a{color:inherit; text-decoration:none}
 
 
 /* ===== Hero (Doge-inspired premium vibe) ===== */
-.hero{ padding:92px 0 44px; }
+.hero{ padding:56px 0 20px; }
 .hero-stack {
   display: grid;
   justify-items: center;
@@ -212,3 +212,54 @@ th{text-align:left; color:var(--muted); font-size:13px}
 
 /* ===== Notes ===== */
 .note{font-size:13px; color:var(--muted)}
+
+.hero-visual .mascot{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 38px rgba(0,0,0,.55));animation:floatY 7s ease-in-out infinite}
+
+/* premium animations */
+@keyframes floatY { 0%{ transform: translateY(0) } 50%{ transform: translateY(-10px) } 100%{ transform: translateY(0) } }
+@keyframes sweepGlow {
+  0%{ opacity:.0; transform: translateY(-30%) }
+  35%{ opacity:.35 }
+  100%{ opacity:.0; transform: translateY(30%) }
+}
+.hero{ position:relative; overflow:hidden }
+.hero::before{
+  content:""; position:absolute; inset:-25% -10% auto -10%; height:60%;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(124,246,215,.12), transparent 60%);
+  animation: sweepGlow 12s ease-in-out infinite;
+  pointer-events:none;
+}
+.hero-visual .mascot{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 38px rgba(0,0,0,.55));animation:floatY 7s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){
+  .hero::before, .hero-visual .mascot{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 38px rgba(0,0,0,.55));animation:floatY 7s ease-in-out infinite}
+}
+
+@media (max-width:640px){ .hero h1{ letter-spacing:0.14em } }
+
+/* starfield */
+.hero{position:relative;overflow:hidden}
+.hero::after{
+  content:""; position:absolute; inset:0; opacity:.18; pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.16) 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 35%, rgba(255,255,255,.12) 50%, transparent 51%),
+    radial-gradient(2px 2px at 50% 60%, rgba(124,246,215,.10) 50%, transparent 51%);
+  animation: starDrift 60s linear infinite;
+}
+@keyframes starDrift{ from{transform:translateY(0)} to{transform:translateY(-140px)} }
+
+/* button hovers */
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{height:42px;padding:0 18px;border-radius:999px;font-weight:800;position:relative;
+transition:transform .12s ease,box-shadow .12s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(23,201,100,.25)}
+.btn.primary{background:#17c964;color:#04130a}
+.btn.secondary{background:#121822;color:#e9f1ff;border:1px solid rgba(255,255,255,.08)}
+
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+.section{padding:52px 0;border-top:1px solid rgba(255,255,255,.06)}
+.grid.cards{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{grid-column:span 4;background:#10151d;border:1px solid rgba(255,255,255,.06);
+border-radius:18px;padding:18px}
+@media (max-width:920px){.card{grid-column:span 6}}
+@media (max-width:640px){.card{grid-column:span 12}}
