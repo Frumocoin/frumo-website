@@ -1,0 +1,1 @@
+console.log('Frumo Website v1.0 Loaded');
