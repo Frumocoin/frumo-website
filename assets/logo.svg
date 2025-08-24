@@ -1,32 +1,25 @@
-<!-- Frumo badge logo (SVG) -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Frumo logo">
+<!-- Frumo logo badge - tight viewBox, no extra spacing -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" aria-label="Frumo">
   <defs>
-    <!-- Soft green gradient background -->
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#18C964"/>
-      <stop offset="1" stop-color="#7CF6D7"/>
+      <stop offset=".9" stop-color="#62E7C3"/>
     </linearGradient>
-
-    <!-- Glow shadow -->
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="rgba(0,0,0,.35)" />
-    </filter>
-
-    <!-- Circle mask to keep the mascot neatly inside -->
-    <mask id="circleMask">
-      <rect width="256" height="256" fill="black"/>
-      <circle cx="128" cy="128" r="96" fill="white"/>
-    </mask>
+    <clipPath id="round">
+      <!-- rounded square badge -->
+      <rect x="0" y="0" width="128" height="128" rx="20" ry="20"/>
+    </clipPath>
   </defs>
 
-  <!-- Rounded gradient badge with subtle shadow -->
-  <rect x="8" y="8" width="240" height="240" rx="32" fill="url(#g)" filter="url(#shadow)"/>
+  <!-- badge background -->
+  <rect width="128" height="128" rx="20" ry="20" fill="url(#g)"/>
 
-  <!-- Put mascot inside a circle mask; scale to fit -->
-  <!-- IMPORTANT: mascot.png must be in the same /assets/ folder -->
-  <g mask="url(#circleMask)">
+  <!-- mascot, perfectly centered & scaled, clipped to badge -->
+  <!-- Make sure /assets/mascot.png exists -->
+  <g clip-path="url(#round)">
+    <!-- The mascot PNG often has natural whitespace; this scale/translate trims it visually -->
     <image href="mascot.png"
-           x="32" y="24" width="192" height="224"
-           preserveAspectRatio="xMidYMid meet" />
+           x="8" y="6" width="112" height="116"
+           preserveAspectRatio="xMidYMid slice"/>
   </g>
 </svg>
