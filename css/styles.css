@@ -213,7 +213,7 @@ th{text-align:left; color:var(--muted); font-size:13px}
 /* ===== Notes ===== */
 .note{font-size:13px; color:var(--muted)}
 
-.hero-visual .mascot{display:block;width:100%;height:100%;object-fit:contain}
+.hero-visual .mascot{display:block; margin:0 auto; width:min(560px,60vw); height:auto; object-fit:contain; filter:drop-shadow(0 22px 44px rgba(0,0,0,.6)); animation: floatY 7s ease-in-out infinite;}
 
 /* premium animations */
 @keyframes floatY { 0%{ transform: translateY(0) } 50%{ transform: translateY(-10px) } 100%{ transform: translateY(0) } }
@@ -222,16 +222,16 @@ th{text-align:left; color:var(--muted); font-size:13px}
   35%{ opacity:.35 }
   100%{ opacity:.0; transform: translateY(30%) }
 }
-.hero{ position:relative; overflow:hidden }
+.hero{ position:relative; overflow:visible;}
 .hero::before{
   content:""; position:absolute; inset:-25% -10% auto -10%; height:60%;
   background: radial-gradient(60% 60% at 50% 50%, rgba(124,246,215,.12), transparent 60%);
   animation: sweepGlow 12s ease-in-out infinite;
   pointer-events:none;
 }
-.hero-visual .mascot{ animation: floatY 7s ease-in-out infinite }
+.hero-visual .mascot{display:block; margin:0 auto; width:min(560px,60vw); height:auto; object-fit:contain; filter:drop-shadow(0 22px 44px rgba(0,0,0,.6)); animation: floatY 7s ease-in-out infinite;}
 @media (prefers-reduced-motion: reduce){
-  .hero::before, .hero-visual .mascot{ animation:none }
+  .hero::before, .hero-visual .mascot{display:block; margin:0 auto; width:min(560px,60vw); height:auto; object-fit:contain; filter:drop-shadow(0 22px 44px rgba(0,0,0,.6)); animation: floatY 7s ease-in-out infinite;}
 }
 
 /* --- PREMIUM OVERRIDE LAYER --- */
@@ -246,7 +246,7 @@ body{ font-family:var(--bfont) }
 h1,h2,h3{ font-family:var(--hfont) }
 
 /* Hero composition */
-.hero{ position:relative; overflow:hidden; padding:56px 0 24px }
+.hero{ position:relative; overflow:visible; padding:56px 0 24px }
 .hero .pill{ background:#121822; border:1px solid rgba(255,255,255,.06) }
 .hero h1{
   margin:12px 0 6px;
@@ -289,12 +289,8 @@ h1,h2,h3{ font-family:var(--hfont) }
 @keyframes conicSpin{ from{transform:rotate(0)} to{transform:rotate(1turn)} }
 
 /* Mascot: guaranteed fit + float */
-.hero-visual{ width:min(900px,92vw); margin:36px auto 0; aspect-ratio:16/9; background:transparent }
-.hero-visual .mascot{
-  display:block; width:100%; height:100%; object-fit:contain;
-  filter: drop-shadow(0 22px 44px rgba(0,0,0,.6));
-  animation: floatY 7s ease-in-out infinite;
-}
+.hero-visual{margin:28px auto 0; background:transparent; border:none; box-shadow:none; width:100%;}
+.hero-visual .mascot{display:block; margin:0 auto; width:min(560px,60vw); height:auto; object-fit:contain; filter:drop-shadow(0 22px 44px rgba(0,0,0,.6)); animation: floatY 7s ease-in-out infinite;}
 @keyframes floatY{ 0%{transform:translateY(0)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0)} }
 
 /* CTAs */
@@ -325,3 +321,15 @@ h1,h2,h3{ font-family:var(--hfont) }
   display:flex; gap:10px; justify-content:center; align-items:center;
 }
 .buybar .inner .btn{ height:40px; padding:0 16px }
+
+
+/* --- FINAL OVERRIDES (do not remove) --- */
+.hero{ overflow: visible !important; }
+.hero-visual{ margin: 28px auto 0 !important; background: transparent !important;
+              border: none !important; box-shadow: none !important; width: 100% !important; }
+.hero-visual .mascot,
+.hero-visual > img.mascot{ display:block !important; margin:0 auto !important;
+  width: min(520px, 58vw) !important; height: auto !important; object-fit: contain !important;
+  filter: drop-shadow(0 22px 44px rgba(0,0,0,.6)) !important; }
+.brand img{ width:28px !important; height:28px !important; border-radius:999px !important; box-shadow:none !important; }
+
