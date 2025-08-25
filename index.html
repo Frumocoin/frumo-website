@@ -174,6 +174,43 @@ img,svg,canvas,video{max-width:100%!important;height:auto!important}
 </style>
 
 
+<style id="FRUMO_NAV_MOBILE_FIX">
+/* Make the header a clean, single row on phones */
+@media (max-width: 720px){
+  header, .site-nav { position: sticky; top: 0; left: 0; right: 0; z-index: 10; }
+  header .container { 
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; padding: 10px 12px !important;
+  }
+  /* brand/logo on the left */
+  header .brand, header .logo { flex: 0 0 auto; display:flex; align-items:center; gap:8px; }
+  header .brand img, header .logo img { width: 22px; height: 22px; display:block; }
+
+  /* centered links row that can scroll horizontally if needed */
+  header nav, header .nav, header .links, header .menu {
+    flex: 1 1 auto; display:flex; align-items:center; justify-content:center; 
+    gap: 18px; overflow-x:auto; white-space:nowrap; scrollbar-width:none; 
+    -ms-overflow-style:none; padding: 4px 0;
+  }
+  header nav::-webkit-scrollbar{ display:none; }
+
+  /* Buy button on the right, fixed size */
+  header .buy, header a.buy, header .cta-buy {
+    flex: 0 0 auto; min-width: 64px; height: 36px; display: inline-flex; 
+    align-items:center; justify-content:center; padding: 0 14px;
+    border-radius: 999px;
+  }
+
+  /* Remove weird inner line or offsets sometimes caused by transforms */
+  header, .site-nav, header * { transform: none !important; }
+}
+
+/* Make tap targets responsive and make sure links are clickable */
+header a, header button { -webkit-tap-highlight-color: transparent; }
+a, button { pointer-events: auto !important; touch-action: manipulation; }
+</style>
+
+
   
 </head>
 
@@ -532,6 +569,100 @@ img, svg, canvas { max-width: 100% !important; height: auto !important; }
   pointer-events: none !important;
 }
 </style>
+
+
+<script id="FRUMO_ACTIONS_WIRING">
+(function(){
+  // 1) Helper to open new tab safely
+  function go(url){
+    if(!url) return;
+    try { window.open(url, '_blank', 'noopener'); } catch(e){}
+  }
+  // 2) Get contract address from a single source of truth
+  //    Prefer a data attribute. Fallback to visible text node in a #contract element.
+  function getContract(){
+    var el = document.querySelector('[data-contract-address]') || 
+             document.getElementById('contract-address') ||
+             document.querySelector('#contract, .contract');
+    if(!el) return '';
+    var v = (el.getAttribute && el.getAttribute('data-contract-address')) || (el.textContent || '');
+    return (v || '').trim();
+  }
+  var CONTRACT = getContract();
+
+  // 3) Raydium / Solscan / X / Telegram URLs (you can set these in HTML as data-* too)
+  //    Example in HTML: <a class="btn" id="btn-raydium" data-href="https://raydium.io/swap/?inputCurrency=...">Swap</a>
+  
+  
+  function pick(el, fallback){
+    return (el && el.getAttribute && el.getAttribute('data-href')) || fallback || '';
+  }
+  var elRay   = document.getElementById('btn-raydium');
+  var elSol   = document.getElementById('btn-solscan');
+  var elTw    = document.getElementById('btn-twitter');
+  var elTg    = document.getElementById('btn-telegram');
+  var elView  = document.getElementById('btn-viewchart');
+  var elCopy  = document.getElementById('btn-copy'); // "Copy Address" button
+
+  // Build Solscan link from contract if not provided
+  var solscanURL = pick(elSol);
+  if(!solscanURL){
+    solscanURL = CONTRACT ? ('https://solscan.io/token/' + CONTRACT) : 'https://solscan.io';
+  }
+
+  // If you have these later, just set data-href on the element in HTML
+  var rayURL  = pick(elRay);
+  var twURL   = pick(elTw,  'https://twitter.com/');     // put your X link in data-href
+  var tgURL   = pick(elTg,  'https://t.me/');            // put your Telegram in data-href
+  var chartURL= pick(elView);                            // e.g. dexscreener
+
+  // 4) Wire clicks if elements exist
+  if(elRay)  elRay.addEventListener('click',  function(e){ e.preventDefault(); go(rayURL);  });
+  if(elSol)  elSol.addEventListener('click',  function(e){ e.preventDefault(); go(solscanURL); });
+  if(elTw)   elTw.addEventListener('click',   function(e){ e.preventDefault(); go(twURL);   });
+  if(elTg)   elTg.addEventListener('click',   function(e){ e.preventDefault(); go(tgURL);   });
+  if(elView) elView.addEventListener('click', function(e){ e.preventDefault(); go(chartURL);});
+
+  // 5) Copy contract button
+  if(elCopy){
+    elCopy.addEventListener('click', async function(e){
+      e.preventDefault();
+      var addr = CONTRACT;
+      if(!addr){
+        // fall back: try reading nearest text node
+        var src = document.querySelector('#contract-address, [data-contract-address]') || document.querySelector('#contract, .contract');
+        addr = (src && (src.getAttribute && src.getAttribute('data-contract-address'))) || (src && src.textContent) || '';
+        addr = (addr || '').trim();
+      }
+      if(!addr){ elCopy.textContent = 'No Address'; return; }
+      try{
+        await navigator.clipboard.writeText(addr);
+        var prev = elCopy.textContent;
+        elCopy.textContent = 'Copied!';
+        setTimeout(function(){ elCopy.textContent = prev; }, 1200);
+      }catch(err){
+        // fallback for older browsers
+        var ta = document.createElement('textarea');
+        ta.value = addr; document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); }catch(e){}
+        document.body.removeChild(ta);
+        var prev2 = elCopy.textContent;
+        elCopy.textContent = 'Copied!';
+        setTimeout(function(){ elCopy.textContent = prev2; }, 1200);
+      }
+    });
+  }
+
+  // 6) Ensure no invisible overlay blocks taps
+  var blockers = document.querySelectorAll('.overlay, .scrim, .veil, .backdrop, [class*="overlay"], [class*="scrim"], [class*="veil"], [class*="backdrop"]');
+  blockers.forEach(function(b){ b.style.pointerEvents = 'none'; });
+
+  // 7) Make sure all anchors actually receive input
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.style.pointerEvents = 'auto';
+  });
+})();
+</script>
 
 
 </body>
