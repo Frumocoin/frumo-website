@@ -61,9 +61,9 @@
 (() => {
   const table = document.querySelector('.tokey table');
   if (!table) return;
-  const headers = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+  const headers = Array.from[table.querySelectorAll('thead th')].map(th => th.textContent.trim());
   table.querySelectorAll('tbody tr').forEach(tr => {
-    [...tr.children].forEach((td, i) => {
+    Array.from(tr.children).forEach((td, i) => {
       if (!td.hasAttribute('data-label') && headers[i]) td.setAttribute('data-label', headers[i]);
     });
   });
