@@ -184,31 +184,62 @@
     .nav .brand img{ width:22px; height:22px; display:block; }
 
     .nav .links{
-      flex:1 1 auto; display:flex; align-items:center; justify-content:center;
-      gap:18px; overflow-x:auto; white-space:nowrap; scrollbar-width:none;
-      -ms-overflow-style:none; padding:4px 0;
+      flex:1 1 auto; display:flex; align-items:<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Frumo — the people’s frog-dog</title>
+  <meta name="description" content="Frumo — the crowned frog-dog. People-powered, meme-fueled, premium vibes." />
+  <meta property="og:title" content="Frumo — the people’s frog-dog" />
+  <meta property="og:description" content="Crowned in chaos. Built for community. To the moon." />
+  <meta property="og:image" content="/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2318c964'/%3E%3Ctext x='50' y='63' font-size='60' text-anchor='middle' fill='white' font-family='Inter,system-ui,-apple-system,Segoe UI,Roboto'%3EF%3C/text%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Small inline overrides dedicated to mobile nav + hero safety -->
+  <style>
+    /* Smooth in-page scroll with room for sticky header */
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    section[id]{scroll-margin-top:84px}
+
+    /* Ensure hero/about paint above background effects */
+    header, .hero, #about, #how, #tokenomics { position:relative; z-index:2 }
+    .bg-wrap, .bg, .background, .stars, .starfield, canvas.bg, #bg{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
     }
-    .nav .links::-webkit-scrollbar{ display:none; }
 
-    .nav .cta .btn{
-      flex:0 0 auto; min-width:64px; height:36px; display:inline-flex;
-      align-items:center; justify-content:center; padding:0 14px; border-radius:999px;
+    /* --- MOBILE NAV RESCUE --- */
+    @media (max-width:720px){
+      .nav{position:sticky; top:0; left:0; right:0; z-index:50; background:#0a0a0a; border-bottom:1px solid rgba(255,255,255,.08)}
+      .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px}
+      .nav .brand{display:flex; align-items:center; gap:8px; flex:0 0 auto}
+      .nav .brand img{width:22px; height:22px; display:block}
+      .nav .links{
+        flex:1 1 auto; display:flex; align-items:center; justify-content:center; gap:18px;
+        overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch;
+        scrollbar-width:none; padding:4px 0;
+      }
+      .nav .links::-webkit-scrollbar{display:none}
+      .nav .cta .btn{min-width:64px; height:36px; display:inline-flex; align-items:center; justify-content:center; padding:0 14px; border-radius:999px}
     }
 
-    /* Remove weird inner line or offsets sometimes caused by transforms */
-    .nav, .nav * { transform:none !important; }
-  }
-
-  /* Make tap targets responsive and make sure links are clickable */
-  .nav a, .nav button { -webkit-tap-highlight-color: transparent; }
-  a, button { pointer-events: auto !important; touch-action: manipulation; }
+    /* Make tap targets always clickable */
+    a, button { pointer-events:auto; touch-action:manipulation; -webkit-tap-highlight-color:transparent }
+    img,svg,canvas,video{max-width:100%; height:auto}
   </style>
 </head>
 
 <body>
-  <div id="mobile-debug-badge">MOBILE FIX ACTIVE</div>
-
-  <!-- Animated background layers -->
+  <!-- Animated background -->
   <div class="bg-wrap">
     <div class="bg-grad-1"></div>
     <div class="bg-grad-2"></div>
@@ -216,14 +247,11 @@
     <div class="bg-orb"></div>
   </div>
 
+  <!-- Top nav -->
   <nav class="nav">
-    <button class="nav-toggle" aria-expanded="false" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-
     <div class="nav-inner container">
-      <a class="brand" href="#top">
-        <img src="assets/logo_plain.svg" alt="Frumo logo" />
+      <a class="brand" href="#top" aria-label="Frumo">
+        <img src="assets/logo_plain.svg" alt="Frumo logo">
         <span>FRUMOCOIN</span>
       </a>
 
@@ -240,23 +268,24 @@
     </div>
   </nav>
 
-  <!-- Premium hero -->
+  <!-- Hero -->
   <header class="hero container" id="top">
     <div class="hero-stack">
       <div class="brand-pill">Born of Doge &amp; Pepe • Crowned in Chaos</div>
 
-      <h1 class="giant wordspaced gradient-text">FRUMO</h1>
+      <h1 class="giant gradient-text">FRUMO</h1>
       <p class="tagline">the people’s frog-dog</p>
 
       <div class="hero-cta">
         <a class="btn primary big" href="#buy">Buy $FRUMO</a>
-        <a class="btn glass" id="scanBtn" target="_blank" rel="noreferrer">Solscan</a>
-        <a class="btn glass" id="tgBtn" target="_blank" rel="noreferrer">Telegram</a>
-        <a class="btn glass" id="xBtn" target="_blank" rel="noreferrer">X / Twitter</a>
+        <!-- give real hrefs so links are always clickable; JS will update if you change the constants below -->
+        <a class="btn glass" id="scanBtn"   href="https://solscan.io/token/PASTE_TOKEN"          target="_blank" rel="noreferrer">Solscan</a>
+        <a class="btn glass" id="tgBtn"     href="https://t.me/FrumoCoin"                          target="_blank" rel="noreferrer">Telegram</a>
+        <a class="btn glass" id="xBtn"      href="https://x.com/FrumoCoin"                         target="_blank" rel="noreferrer">X / Twitter</a>
       </div>
 
       <div class="hero-art">
-        <img class="mascot" src="/assets/mascot.png" alt="Frumo mascot" />
+        <img class="mascot" src="/assets/mascot.png" alt="Frumo mascot">
       </div>
     </div>
   </header>
@@ -284,15 +313,43 @@
         <div class="item"><h3>Decimals</h3><p>9</p></div>
         <div class="item"><h3>Chain</h3><p>Solana</p></div>
       </div>
+
       <div class="card panel">
         <table class="tokentable">
-          <thead><tr><th>Category</th><th>Allocation</th><th>Tokens</th><th>Notes</th></tr></thead>
+          <thead>
+            <tr><th>Category</th><th>Allocation</th><th>Tokens</th><th>Notes</th></tr>
+          </thead>
           <tbody>
-            <tr><td>Community & Liquidity</td><td>50%</td><td>34,710,000,000</td><td>Bonding curve & Raydium LP</td></tr>
-            <tr><td>Marketing & Growth</td><td>20%</td><td>13,884,000,000</td><td>Influencers, listings, promos</td></tr>
-            <tr><td>Team & Dev</td><td>10%</td><td>6,942,000,000</td><td>Public multi-sig, transparent</td></tr>
-            <tr><td>Treasury / Ecosystem</td><td>10%</td><td>6,942,000,000</td><td>Partnerships, utilities</td></tr>
-            <tr><td>Airdrops & Rewards</td><td>10%</td><td>6,942,000,000</td><td>Memes, quests, community</td></tr>
+            <tr>
+              <td>Community & Liquidity</td>
+              <td>50%</td>
+              <td>34,710,000,000</td>
+              <td>Bonding curve &amp; Raydium LP</td>
+            </tr>
+            <tr>
+              <td>Marketing & Growth</td>
+              <td>20%</td>
+              <td>13,884,000,000</td>
+              <td>Influencers, listings, promos</td>
+            </tr>
+            <tr>
+              <td>Team & Dev</td>
+              <td>10%</td>
+              <td>6,942,000,000</td>
+              <td>Public multi-sig, transparent</td>
+            </tr>
+            <tr>
+              <td>Treasury / Ecosystem</td>
+              <td>10%</td>
+              <td>6,942,000,000</td>
+              <td>Partnerships, utilities</td>
+            </tr>
+            <tr>
+              <td>Airdrops & Rewards</td>
+              <td>10%</td>
+              <td>6,942,000,000</td>
+              <td>Memes, quests, community</td>
+            </tr>
           </tbody>
         </table>
         <p class="note">Post-launch: LP will be locked and mint authority revoked.</p>
@@ -318,8 +375,8 @@
       <h2>Community</h2>
       <p class="muted">Join the Frumo fam — share memes, ideas, and vibes.</p>
       <div class="actions">
-        <a class="btn primary" id="joinTg" target="_blank" rel="noreferrer">Join Telegram</a>
-        <a class="btn glass" id="followX" target="_blank" rel="noreferrer">Follow on X</a>
+        <a class="btn primary" id="joinTg" href="https://t.me/FrumoCoin" target="_blank" rel="noreferrer">Join Telegram</a>
+        <a class="btn glass"   id="followX" href="https://x.com/FrumoCoin"  target="_blank" rel="noreferrer">Follow on X</a>
       </div>
     </div>
   </section>
@@ -339,18 +396,19 @@
           <code id="addr">PASTE_TOKEN_ADDRESS</code>
         </div>
         <div class="actions">
-          <a class="btn primary" id="raydiumBtn" target="_blank" rel="noreferrer">Swap on Raydium</a>
-          <button class="btn glass" id="copyBtn">Copy Address</button>
-          <a class="btn glass" id="chartBtn" target="_blank" rel="noreferrer">View Chart</a>
+          <a class="btn primary" id="raydiumBtn" href="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_TOKEN" target="_blank" rel="noreferrer">Swap on Raydium</a>
+          <button class="btn glass" id="copyBtn" type="button">Copy Address</button>
+          <a class="btn glass" id="chartBtn"  href="https://dexscreener.com/solana/PASTE_POOL_OR_TOKEN" target="_blank" rel="noreferrer">View Chart</a>
         </div>
       </div>
+
       <p class="note">**Not financial advice. Crypto is volatile. Do your own research.</p>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container footer-grid">
-      <div class="brand"><img src="assets/logo_plain.svg" alt="Frumo logo"/><span>Frumo</span></div>
+      <div class="brand"><img src="assets/logo_plain.svg" alt="Frumo logo"><span>Frumo</span></div>
       <div class="links">
         <a href="#tokenomics">Tokenomics</a><a href="#roadmap">Roadmap</a><a href="#community">Community</a>
       </div>
@@ -358,154 +416,65 @@
     </div>
   </footer>
 
+  <!-- ===== JS: config + wiring (safe even if JS fails thanks to real hrefs above) ===== -->
   <script>
-    /* Replace these as you go live */
-    window.FRUMO = {
-      tokenAddress: "PASTE_TOKEN_ADDRESS",
-      raydiumUrl: "https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_TOKEN",
-      dexScreenerUrl: "https://dexscreener.com/solana/PASTE_POOL_OR_TOKEN",
-      solscanUrl: "https://solscan.io/token/PASTE_TOKEN",
-      telegramUrl: "https://t.me/FrumoCoin",
-      twitterUrl: "https://x.com/FrumoCoin"
+    // Replace these when you have real values:
+    const FRUMO = {
+      tokenAddress:  'PASTE_TOKEN_ADDRESS',
+      raydiumUrl:    'https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_TOKEN',
+      dexScreener:   'https://dexscreener.com/solana/PASTE_POOL_OR_TOKEN',
+      solscanUrl:    'https://solscan.io/token/PASTE_TOKEN',
+      telegramUrl:   'https://t.me/FrumoCoin',
+      twitterUrl:    'https://x.com/FrumoCoin'
     };
-  </script>
 
-  <script src="/js/app.js"></script>
+    // Keep year current
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- Add data-labels to tokenomics table for mobile cards -->
-  <script>
-  (function(){
-    var t=document.querySelector('#tokenomics table, .tokey table'); if(!t) return;
-    var heads=[].slice.call(t.querySelectorAll('thead th')).map(function(th){return th.textContent.trim()});
-    t.querySelectorAll('tbody tr').forEach(function(tr){
-      [].slice.call(tr.children).forEach(function(td,i){
-        if(!td.hasAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
-      });
-    });
-  })();
-  </script>
-
-  <!-- Remove stray "…" nodes some mobile browsers render -->
-  <script>
-  (function(){
-    function killOrphanEllipses(root){
-      if(!root) return;
-      [...root.childNodes].forEach(function(n){
-        if(n.nodeType===3){
-          var s=(n.nodeValue||'').trim();
-          if (s==='...' || s==='…' || /^[.…]{2,}$/.test(s)) n.remove();
-        }
-      });
-      [...root.querySelectorAll('*')].forEach(function(el){
-        if(el.children.length===0){
-          var t=(el.textContent||'').trim();
-          if(t==='...' || t==='…' || /^[.…]{2,}$/.test(t)) el.remove();
-        }
-      });
-    }
-    killOrphanEllipses(document.body);
-    new MutationObserver(function(){ killOrphanEllipses(document.body); })
-      .observe(document.body,{childList:true,subtree:true});
-  })();
-  </script>
-
-  <script src="js/mobile-hotfix.js?v=1"></script>
-
-  <!-- Keep hero/about visible above effects -->
-  <style id="FRUMO_TOP_VISIBILITY_FIX">
-  header, .site-nav, .hero, .hero * , #about, #about * , #howto, #howto * { position: relative !important; z-index: 2 !important; }
-  .bg-wrap, .bg, .background, .stars, .starfield, canvas.bg, #bg, .hero::before, .hero::after {
-    position: fixed !important; inset: 0 !important; z-index: 0 !important; pointer-events: none !important;
-  }
-  .hero .giant, .hero h1{
-    background: none !important; -webkit-background-clip: initial !important; background-clip: initial !important;
-    -webkit-text-fill-color: initial !important; mix-blend-mode: normal !important; color: #EAF2FF !important; text-shadow: none !important;
-  }
-  @media (max-width: 720px){ .hero .giant::after, .hero h1::after { display: none !important; } }
-  header, .site-nav, .hero, #about, #howto { color: #EAF2FF !important; }
-  header p, .hero p, #about p, #howto p, header li, .hero li, #about li, #howto li { color: #CFE0F0 !important; }
-  html { scroll-padding-top: 96px; } section[id] { scroll-margin-top: 96px; }
-  img, svg, canvas { max-width: 100% !important; height: auto !important; }
-  @media (max-width: 720px){ .hero { padding-top: 28px !important; } }
-  .hero .overlay, .hero .scrim, .hero .veil { opacity: .35 !important; mix-blend-mode: normal !important; }
-  [class*="backdrop"], [class*="blur"] { z-index: 0 !important; pointer-events: none !important; }
-  </style>
-
-  <!-- UPDATED: wire both your IDs and generic ones, with FRUMO fallbacks -->
-  <script id="FRUMO_ACTIONS_WIRING">
-  (function(){
-    function go(url){ if(url){ try{ window.open(url,'_blank','noopener'); }catch(e){} } }
-
-    function getContract(){
-      var el = document.querySelector('[data-contract-address]') ||
-               document.getElementById('contract-address') ||
-               document.getElementById('addr') ||
-               document.querySelector('#contract, .contract');
-      if(!el) return (window.FRUMO && window.FRUMO.tokenAddress) || '';
-      var v = (el.getAttribute && el.getAttribute('data-contract-address')) || (el.textContent || '');
-      v = (v || '').trim();
-      return v || (window.FRUMO && window.FRUMO.tokenAddress) || '';
-    }
-    var CONTRACT = getContract();
-
-    function pickEl(){
-      var ids = Array.prototype.slice.call(arguments);
-      for (var i=0;i<ids.length;i++){
-        var el = document.getElementById(ids[i]);
-        if(el) return el;
+    // Make sure token address shows consistently + copy button works
+    (function(){
+      const el = document.getElementById('addr');
+      if (el && FRUMO.tokenAddress && /PASTE_TOKEN_ADDRESS/.test(el.textContent)) {
+        el.textContent = FRUMO.tokenAddress;
       }
-      return null;
-    }
-    function pickUrl(el, fb){
-      return (el && el.getAttribute && el.getAttribute('data-href')) || fb || '';
-    }
+      const copyBtn = document.getElementById('copyBtn');
+      if (copyBtn && el) {
+        copyBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(el.textContent.trim());
+            copyBtn.textContent = 'Copied!';
+            setTimeout(()=> copyBtn.textContent = 'Copy Address', 1500);
+          } catch(e) {}
+        });
+      }
+    })();
 
-    var elRay  = pickEl('btn-raydium','raydiumBtn');
-    var elSol  = pickEl('btn-solscan','scanBtn');
-    var elTw   = pickEl('btn-twitter','xBtn','twitterBtn','followX');
-    var elTg   = pickEl('btn-telegram','tgBtn','joinTg');
-    var elView = pickEl('btn-viewchart','chartBtn');
-    var elCopy = pickEl('btn-copy','copyBtn');
+    // Ensure all CTAs point to the right places (and remain clickable)
+    (function(){
+      const setHref = (id, url) => {
+        const a = document.getElementById(id);
+        if (a && url) a.setAttribute('href', url);
+      };
+      setHref('raydiumBtn', FRUMO.raydiumUrl);
+      setHref('chartBtn',   FRUMO.dexScreener);
+      setHref('scanBtn',    FRUMO.solscanUrl);
+      setHref('tgBtn',      FRUMO.telegramUrl);
+      setHref('xBtn',       FRUMO.twitterUrl);
+      setHref('joinTg',     FRUMO.telegramUrl);
+      setHref('followX',    FRUMO.twitterUrl);
+    })();
 
-    var rayURL   = pickUrl(elRay,  (window.FRUMO && window.FRUMO.raydiumUrl)   || '');
-    var twURL    = pickUrl(elTw,   (window.FRUMO && window.FRUMO.twitterUrl)   || 'https://twitter.com/');
-    var tgURL    = pickUrl(elTg,   (window.FRUMO && window.FRUMO.telegramUrl)  || 'https://t.me/');
-    var chartURL = pickUrl(elView, (window.FRUMO && window.FRUMO.dexScreenerUrl) || '');
-    var solscanURL = pickUrl(elSol);
-    if(!solscanURL){
-      solscanURL = CONTRACT ? ('https://solscan.io/token/' + CONTRACT)
-                            : ((window.FRUMO && window.FRUMO.solscanUrl) || 'https://solscan.io');
-    }
-
-    if(elRay)  elRay.addEventListener('click',  function(e){ e.preventDefault(); go(rayURL);  });
-    if(elSol)  elSol.addEventListener('click',  function(e){ e.preventDefault(); go(solscanURL); });
-    if(elTw)   elTw.addEventListener('click',   function(e){ e.preventDefault(); go(twURL);   });
-    if(elTg)   elTg.addEventListener('click',   function(e){ e.preventDefault(); go(tgURL);   });
-    if(elView) elView.addEventListener('click', function(e){ e.preventDefault(); go(chartURL);});
-
-    if(elCopy){
-      elCopy.addEventListener('click', async function(e){
-        e.preventDefault();
-        var addr = CONTRACT;
-        if(!addr){ this.textContent = 'No Address'; return; }
-        try{
-          await navigator.clipboard.writeText(addr);
-          var prev = this.textContent; this.textContent = 'Copied!'; setTimeout(()=>this.textContent=prev, 1200);
-        }catch(err){
-          var ta = document.createElement('textarea'); ta.value = addr; document.body.appendChild(ta); ta.select();
-          try{ document.execCommand('copy'); }catch(e){}
-          document.body.removeChild(ta);
-          var prev2 = this.textContent; this.textContent='Copied!'; setTimeout(()=>this.textContent=prev2, 1200);
-        }
+    // Add data-labels to tokenomics table for stacked mobile view
+    (function(){
+      const t = document.querySelector('#tokenomics table');
+      if (!t) return;
+      const heads = [...t.querySelectorAll('thead th')].map(th => th.textContent.trim());
+      t.querySelectorAll('tbody tr').forEach(tr => {
+        [...tr.children].forEach((td,i) => {
+          if (!td.hasAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
+        });
       });
-    }
-
-    // Remove any invisible overlays that might block taps
-    document.querySelectorAll('.overlay, .scrim, .veil, .backdrop, [class*="overlay"], [class*="scrim"], [class*="veil"], [class*="backdrop"]')
-      .forEach(function(b){ b.style.pointerEvents='none'; });
-
-    document.querySelectorAll('a,button').forEach(function(el){ el.style.pointerEvents='auto'; });
-  })();
+    })();
   </script>
 </body>
 </html>
