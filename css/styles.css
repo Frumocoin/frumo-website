@@ -183,3 +183,189 @@ th{text-align:left; color:var(--muted); font-size:13px}
   .container{ padding:0 20px }
   .steps{ grid-template-columns:repeat(2,1fr) }
 }
+
+/* === Frumo: hero alignment & mascot size (patch) === */
+.hero .container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;            /* centers badge, FRUMO, tagline, and CTAs */
+}
+
+/* Smaller mascot on desktop */
+.mascot{ max-width:48% !important; height:auto }
+
+/* Comfortable mascot size on phones/tablets */
+@media (max-width:720px){
+  .hero-art .mascot{
+    width:min(360px,68vw) !important;
+    max-width:68% !important;
+  }
+}
+
+/* === Frumo: Hero alignment & mascot size (final patch) === */
+
+/* Center hero text and buttons */
+.hero .hero-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* Adjust tagline and badge to center nicely */
+.hero .brand-pill,
+.hero .giant,
+.hero .tagline,
+.hero .hero-cta {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Scale mascot appropriately on desktop */
+.hero-art img.mascot {
+  max-width: 48% !important;
+  height: auto !important;
+}
+
+/* Scale mascot appropriately on mobile */
+@media (max-width: 720px) {
+  .hero-art img.mascot {
+    max-width: 70% !important;
+    width: min(360px, 70vw) !important;
+    margin: 0 auto !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* === Hero spacing: add room between badge and FRUMO title === */
+.hero .brand-pill{
+  margin-bottom: 14px !important;  /* space below "Born of Doge & Pepe..." */
+}
+.giant{
+  margin-top: 10px !important;     /* gentle gap before the big title block */
+}
+
+/* === Mascot sizing: keep it reasonable on large desktops too === */
+.hero-art img.mascot{
+  max-width: 46% !important;       /* down from 48–65% that crept back */
+}
+@media (min-width: 1280px){
+  .hero-art img.mascot{ max-width: 42% !important; } /* extra guard on ultrawide */
+}
+@media (max-width: 720px){
+  .hero-art img.mascot{
+    max-width: 68% !important;     /* comfy phone/tablet size */
+    width: min(360px, 68vw) !important;
+  }
+}
+
+/* === Last section (“How to Buy”) alignment fixes === */
+#how .container{
+  display: flex;
+  flex-direction: column;
+  align-items: left;              /* center section contents */
+  gap: 16px;
+}
+#how .steps{
+  width: 100%;
+  max-width: var(--maxw);
+}
+#how .buy{
+  width: 100%;
+  max-width: var(--maxw);           /* keep the rail aligned with the grid */
+  align-items: center;
+}
+#how .buy .actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;          /* center the three CTAs */
+}
+#how .buy .actions .btn{
+  min-width: 200px;                 /* consistent tap targets */
+}
+
+/* small polish for footer alignment, just in case */
+@media (max-width: 900px){
+  .footer .links{ justify-content: left; }
+}
+
+
+
+/* Contract box aligned properly */
+#how .contract-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px auto 30px;
+  max-width: 1200px; /* match width of step cards above */
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Address styling */
+#how .contract-box #addr {
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* Button actions layout */
+#how .contract-box .actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Ensure buttons are consistent in size */
+#how .contract-box .actions .btn {
+  flex: 1 1 180px;
+  max-width: 250px;
+  text-align: center;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  #how .contract-box {
+    padding: 16px;
+    gap: 10px;
+  }
+  #how .contract-box .actions .btn {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+}
+
+
+/* Footer mascot: make it small and tidy */
+.footer .logo img,
+.footer .logo svg,
+.footer .brand img,
+.footer .brand svg {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
