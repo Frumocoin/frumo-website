@@ -270,6 +270,32 @@ Now, Frumo has leapt beyond that quiet valley, hopping into the hearts of people
 })();
 </script>
 
+<script>
+(function(){
+  function killOrphanEllipses(root){
+    if(!root) return;
+    // Remove top-level text nodes made of just dots
+    [...root.childNodes].forEach(function(n){
+      if(n.nodeType === 3){ // text
+        var s = (n.nodeValue || '').trim();
+        if (s === '...' || s === '…' || /^[.…]{2,}$/.test(s)) {
+          n.parentNode && n.parentNode.removeChild(n);
+        }
+      }
+    });
+    // Remove empty elements that only show ellipses
+    [...root.children].forEach(function(el){
+      var t = (el.textContent || '').trim();
+      if ((t === '...' || t === '…' || /^[.…]{2,}$/.test(t)) && el.children.length === 0) {
+        el.remove();
+      }
+    });
+  }
+  killOrphanEllipses(document.body);
+  killOrphanEllipses(document.querySelector('header'));
+})();
+</script>
+
 
 </body>
 </html>
