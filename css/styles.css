@@ -618,3 +618,98 @@ th{text-align:left; color:var(--muted); font-size:13px}
     height: 28px;
   }
 }
+
+
+
+
+/* ===== Premium background (behind everything) ===== */
+#frumo-bg{
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  /* soft space glow so it isn't a plain canvas */
+  background:
+    radial-gradient(80vmax 80vmax at 85% 70%, rgba(24,148,96,.25), transparent 60%),
+    radial-gradient(90vmax 90vmax at 5% 10%, rgba(11,168,105,.12), transparent 55%),
+    #0b1013; /* fallback base */
+}
+
+/* ===== Hero centering & spacing (non-destructive) ===== */
+/* Add this to your existing hero container. If your hero section has a .hero class,
+   these will apply. If your hero doesn't, you can safely add class="hero section"
+   to that existing hero <section> without changing content. */
+.hero .wrap{
+  max-width: 1100px;
+  margin-inline: auto;
+  text-align: center;
+  padding-top: clamp(56px, 10vh, 140px);
+}
+
+.hero .wrap > *{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Eyebrow (“Born of Doge & Pepe…”) */
+.hero .eyebrow,
+.hero .chip,
+.hero .badge,
+.hero .pretitle{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  font-size: .95rem;
+  line-height: 1;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(4px);
+  margin-bottom: 18px; /* extra space above FRUMO */
+}
+
+/* Big “FRUMO” title – keep your fonts, just add glow & centering */
+.hero h1{
+  text-align: center;
+  letter-spacing: .12em;
+  text-shadow: 0 10px 40px rgba(255,240,200,.06);
+  margin: 0 0 10px 0;
+}
+
+/* Subhead “the people’s frog-dog” */
+.hero .subhead,
+.hero .kicker,
+.hero p.subtitle{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* CTA row under hero */
+.hero .cta-row{
+  display: inline-flex;
+  gap: .8rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Mascot sizing (hero image) – keeps it premium but not huge */
+.hero .mascot,
+#hero-mascot,
+img.hero-mascot{
+  width: min(560px, 72vw);
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: clamp(18px, 4vh, 28px) auto 0;
+  filter: drop-shadow(0 30px 80px rgba(0,0,0,.35));
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #frumo-bg{ background-attachment: fixed; }
+}
