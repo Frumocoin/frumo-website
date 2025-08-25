@@ -1,122 +1,53 @@
-// Wire links and small helpers
+// FRUMO minimal client helpers (clean)
 (function(){
   const s = window.FRUMO || {};
+  const $ = (sel) => document.querySelector(sel);
   const byId = (id)=>document.getElementById(id);
+
+  // Wire outbound links if configured
   const setHref = (id,url)=>{ const el = byId(id); if(el && url) el.href = url; };
   setHref('scanBtn', s.solscanUrl);
   setHref('tgBtn', s.telegramUrl);
   setHref('xBtn', s.twitterUrl);
   setHref('joinTg', s.telegramUrl);
   setHref('followX', s.twitterUrl);
-  const addrEl = document.getElementById('addr');
-  if(addrEl && s.tokenAddress) addrEl.textContent = s.tokenAddress;
-  const copyBtn = document.getElementById('copyBtn');
-  if(copyBtn && s.tokenAddress){
-    copyBtn.addEventListener('click', async ()=>{
-      try{ await navigator.clipboard.writeText(s.tokenAddress); copyBtn.textContent='Copied!'; setTimeout(()=>copyBtn.textContent='Copy Address',1500);}catch(e){ alert('Copy failed'); }
+  setHref('raydiumBtn', s.raydiumUrl);
+  setHref('chartBtn', s.dexScreenerUrl);
+
+  // Token contract address show + copy
+  const addrEl = byId('addr');
+  if (addrEl && s.tokenAddress) addrEl.textContent = s.tokenAddress;
+  const copyBtn = byId('copyBtn');
+  if (copyBtn && s.tokenAddress){
+    copyBtn.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(s.tokenAddress);
+        const old = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(()=>{ copyBtn.textContent = old; }, 1500);
+      }catch(e){ alert('Copy failed'); }
     });
   }
-  const ray = document.getElementById('raydiumBtn'); if(ray) setHref('raydiumBtn', s.raydiumUrl);
-  const chart = document.getElementById('chartBtn'); if(chart) setHref('chartBtn', s.dexScreenerUrl);
-  const y = new Date().getFullYear(); const yEl = document.getElementById('year'); if(yEl) yEl.textContent = y;
+
+  // Footer year
+  const yEl = byId('year');
+  if (yEl) yEl.textContent = new Date().getFullYear();
 })();
 
-// Copy Address → "Copied!" feedback (safe)
-(() => {
-  const btn = document.getElementById('copyBtn');
-  const code = document.getElementById('addr');
-  if (!btn || !code) return;
-  btn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(code.textContent.trim());
-      const prev = btn.textContent;
-      btn.textContent = 'Copied!';
-      setTimeout(() => (btn.textContent = prev), 900);
-    } catch {}
-  });
-})();
-
-
-// Highlight nav link for the section that's in view
-(() => {
-  const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-  if (!links.length) return;
-  const targets = links
-    .map(a => document.querySelector(a.getAttribute('href')))
-    .filter(Boolean);
-
-  const setActive = (id) => {
-    links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === `#${id}`));
-  };
-
-  const io = new IntersectionObserver((ents) => {
-    const visible = ents
-      .filter(e => e.isIntersecting)
-      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (visible && visible.target.id) setActive(visible.target.id);
-  }, { rootMargin: "-30% 0px -60% 0px", threshold:[0, .2, .5, .7] });
-
-  targets.forEach(t => io.observe(t));
-})();
-
-
-// Reveal sections/cards as they appear
-(() => {
-  const els = document.querySelectorAll('.section, .card.panel, .step, .roadmap .card, .tokey table');
-  if (!els.length) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-in'); });
-  }, { threshold: .12 });
-  els.forEach(el => { el.classList.add('reveal'); io.observe(el); });
-})();
-
-
-// Auto-add data-labels to <td> elements in Tokenomics table
-(() => {
-  const table = document.querySelector('.tokey table');
+// Tokenomics table: add data-label attributes for stacked mobile layout
+(function(){
+  const table = document.querySelector('.tokey table, table.tokentable');
   if (!table) return;
-
-  const headers = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
-  const rows = table.querySelectorAll('tbody tr');
-
-  rows.forEach(row => {
-    [...row.children].forEach((td, idx) => {
-      if (!td.hasAttribute('data-label') && headers[idx]) {
-        td.setAttribute('data-label', headers[idx]);
-      }
-    });
-  });
-})();
-
-
-// Add data-labels to tokenomics <td> (for stacked mobile view)
-(() => {
-  const table = document.querySelector('.tokey table');
-  if (!table) return;
-  const headers = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
-  table.querySelectorAll('tbody tr').forEach(row => {
-    [...row.children].forEach((td, i) => {
-      if (!td.hasAttribute('data-label') && headers[i]) td.setAttribute('data-label', headers[i]);
-    });
-  });
-})();
-
-
-(() => {
-  const table = document.querySelector('.tokey table');
-  if (!table) return;
-  const headers = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+  const heads = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
   table.querySelectorAll('tbody tr').forEach(tr => {
-    [...tr.children].forEach((td, i) => {
-      if (!td.hasAttribute('data-label') && headers[i]) td.setAttribute('data-label', headers[i]);
+    Array.from(tr.children).forEach((td, i) => {
+      if (!td.getAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
     });
   });
 })();
 
-
-
-// Mobile burger toggle
-(() => {
+// Mobile nav toggle (if markup present)
+(function(){
   const nav = document.querySelector('.site-nav');
   const btn = document.querySelector('.nav-toggle');
   if (!nav || !btn) return;
@@ -125,5 +56,3 @@
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 })();
-
-
