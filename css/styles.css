@@ -574,17 +574,47 @@ th{text-align:left; color:var(--muted); font-size:13px}
   .footer .links{ gap: 16px; }
 }
 
-
+/* --- Footer logo: fix mobile "square" --- */
 .footer .footer-logo {
+  display: inline-block !important;
   width: 34px;
   height: 34px;
   object-fit: contain;
-  display: inline-block;
+  background: transparent !important;   /* kill colored box backgrounds */
+  background-image: none !important;    /* if a bg image is injected */
+  border-radius: 0 !important;
+  -webkit-mask: none !important;        /* disable any mask-image on mobile */
+  mask: none !important;
+  -webkit-filter: none !important;
+  filter: none !important;
+  content: normal !important;           /* neutralize icon-font style resets */
 }
 
+/* Some mobile utilities target all images/icons inside .brand – neutralize them */
+.footer .brand img,
+.footer .brand svg {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  background: transparent !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+/* If an icon class is used by mistake, force it to not paint a square */
+.footer .brand [class*="icon"],
+.footer .brand [class^="icon"] {
+  background: none !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+/* Mobile size */
 @media (max-width: 640px) {
-  .footer .footer-logo {
-    width: 28px; /* Slightly smaller for mobile */
+  .footer .footer-logo,
+  .footer .brand img,
+  .footer .brand svg {
+    width: 28px;
     height: 28px;
   }
 }
