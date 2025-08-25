@@ -1,72 +1,80 @@
-// FRUMO minimal client helpers (clean)
-(function(){
-  const s = window.FRUMO || {};
-  const $ = (sel) => document.querySelector(sel);
-  const byId = (id)=>document.getElementById(id);
+// frumo.app.js — clean, robust, no inline <script> blocks
 
-  // Wire outbound links if configured
-  const setHref = (id,url)=>{ const el = byId(id); if(el && url) el.href = url; };
-  setHref('scanBtn', s.solscanUrl);
-  setHref('tgBtn', s.telegramUrl);
-  setHref('xBtn', s.twitterUrl);
-  setHref('joinTg', s.telegramUrl);
-  setHref('followX', s.twitterUrl);
-  setHref('raydiumBtn', s.raydiumUrl);
-  setHref('chartBtn', s.dexScreenerUrl);
+(() => {
+  const cfg = window.FRUMO || {};
+  const $  = (sel) => document.querySelector(sel);
+  const by = (id)  => document.getElementById(id);
 
-  // Token contract address show + copy
-  const addrEl = byId('addr');
-  if (addrEl && s.tokenAddress) addrEl.textContent = s.tokenAddress;
-  const copyBtn = byId('copyBtn');
-  if (copyBtn && s.tokenAddress){
+  // ---- Outbound links (only if values exist) ----
+  const setHref = (id, url) => { const el = by(id); if (el && url) el.href = url; };
+  setHref('scanBtn',    cfg.solscanUrl);
+  setHref('tgBtn',      cfg.telegramUrl);
+  setHref('xBtn',       cfg.twitterUrl);
+  setHref('joinTg',     cfg.telegramUrl);
+  setHref('followX',    cfg.twitterUrl);
+  setHref('raydiumBtn', cfg.raydiumUrl);
+  setHref('chartBtn',   cfg.dexScreenerUrl);
+
+  // ---- Token address display ----
+  const addrEl = by('addr');
+  if (addrEl && cfg.tokenAddress) addrEl.textContent = cfg.tokenAddress;
+
+  // ---- Copy Address (with fallback) ----
+  const copyBtn = by('copyBtn');
+  const copy = async (text) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      // fallback: temporary textarea
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+  };
+  if (copyBtn && addrEl) {
     copyBtn.addEventListener('click', async () => {
-      try{
-        await navigator.clipboard.writeText(s.tokenAddress);
-        const old = copyBtn.textContent;
+      const address = addrEl.textContent.trim();
+      try {
+        await copy(address);
+        const prev = copyBtn.textContent;
         copyBtn.textContent = 'Copied!';
-        setTimeout(()=>{ copyBtn.textContent = old; }, 1500);
-      }catch(e){ alert('Copy failed'); }
+        setTimeout(() => (copyBtn.textContent = prev), 1500);
+      } catch (e) {
+        console.error('Copy failed:', e);
+        alert('Failed to copy. Please copy manually.');
+      }
     });
   }
 
-  // Footer year
-  const yEl = byId('year');
-  if (yEl) yEl.textContent = new Date().getFullYear();
-})();
+  // ---- Footer year (optional #year span) ----
+  const year = by('year');
+  if (year) year.textContent = String(new Date().getFullYear());
 
-// Tokenomics table: add data-label attributes for stacked mobile layout
-(function(){
+  // ---- Tokenomics table data-labels for mobile ----
   const table = document.querySelector('.tokey table, table.tokentable');
-  if (!table) return;
-  const heads = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
-  table.querySelectorAll('tbody tr').forEach(tr => {
-    Array.from(tr.children).forEach((td, i) => {
-      if (!td.getAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
+  if (table) {
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+    table.querySelectorAll('tbody tr').forEach(tr => {
+      Array.from(tr.children).forEach((td, i) => {
+        if (!td.hasAttribute('data-label') && headers[i]) {
+          td.setAttribute('data-label', headers[i]);
+        }
+      });
     });
-  });
-})();
+  }
 
-// Mobile nav toggle (if markup present)
-(function(){
-  const nav = document.querySelector('.site-nav');
-  const btn = document.querySelector('.nav-toggle');
-  if (!nav || !btn) return;
-  btn.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-})();
-
-<script>
-(() => {
-  const table = document.querySelector('.tokey table');
-  if (!table) return;
-  const headers = Array.from[table.querySelectorAll('thead th')].map(th => th.textContent.trim());
-  table.querySelectorAll('tbody tr').forEach(tr => {
-    Array.from(tr.children).forEach((td, i) => {
-      if (!td.hasAttribute('data-label') && headers[i]) td.setAttribute('data-label', headers[i]);
+  // ---- Mobile nav toggle (if present) ----
+  const navBtn = $('.nav-toggle');
+  const nav    = $('.site-nav');
+  if (navBtn && nav) {
+    navBtn.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-  });
+  }
 })();
-</script>
-
