@@ -15,222 +15,198 @@
   <!-- Base fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/override-mobile.css?v=1">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/override-mobile.css?v=1">
 
-<style id="FRUMO_MOBILE_DEBUG">
-/* === DIAGNOSTIC: if you can see the green badge, this CSS is active === */
-#mobile-debug-badge{
-  position:fixed; z-index:9999; left:8px; top:8px;
-  font: 700 12px/1.1 system-ui, -apple-system, Segoe UI, Inter, Arial;
-  color:#021; background:#2af68c; padding:6px 8px; border-radius:8px;
-  box-shadow:0 4px 14px rgba(0,0,0,.25);
-}
-@media (min-width:721px){ #mobile-debug-badge{ display:none } }
-
-/* SAFETY: viewport + anchor offset (in case header is sticky) */
-html{ scroll-behavior:smooth; scroll-padding-top:84px }
-section[id]{ scroll-margin-top:84px }
-
-/* Make dark surfaces readable */
-.card,.panel,.step,.tokey table,.tokey th,.tokey td{ color:#EAF2FF !important }
-.card p,.panel p,.step p,.tokey td{ color:#CFE0F0 !important }
-
-/* Media never overflows */
-img,svg,canvas,video{ max-width:100% !important; height:auto !important }
-
-/* ---- Phones <=720px ---- */
-@media (max-width:720px){
-  .container{ padding:0 16px !important }
-  .section{ padding:40px 0 !important }
-  .section .container > * + *{ margin-top:20px !important }
-
-  /* Hero */
-  .hero{ padding-top:28px !important; text-align:center !important }
-  .hero .giant{ font-size:clamp(38px,16vw,62px) !important; letter-spacing:.12em !important }
-  .hero-visual,.hero-art{ margin-top:16px !important }
-  .hero-visual .mascot,.hero-art .mascot{ width:min(420px,78vw) !important; margin:0 auto !important }
-
-  /* Buttons stack full width */
-  .hero-cta,.cta-row,.actions{ display:flex; gap:10px !important; flex-wrap:wrap; justify-content:center }
-  .btn, a.btn{ width:100% !important; height:46px !important; justify-content:center !important }
-
-  /* How to Buy & Roadmap -> 1 column */
-  .steps{ display:grid !important; grid-template-columns:1fr !important; gap:14px !important }
-  .step{ padding:16px !important; border-radius:16px !important }
-  .roadmap .grid{ display:grid !important; grid-template-columns:1fr !important; gap:14px !important }
-  .roadmap .card{ min-height:0 !important; padding:16px !important; border-radius:16px !important }
-
-  /* Tokenomics table -> stacked cards */
-  .tokey table,.tokey thead,.tokey tbody,.tokey th,.tokey td,.tokey tr{
-    display:block !important; width:100% !important;
+  <style id="FRUMO_MOBILE_DEBUG">
+  /* === DIAGNOSTIC: if you can see the green badge, this CSS is active === */
+  #mobile-debug-badge{
+    position:fixed; z-index:9999; left:8px; top:8px;
+    font: 700 12px/1.1 system-ui, -apple-system, Segoe UI, Inter, Arial;
+    color:#021; background:#2af68c; padding:6px 8px; border-radius:8px;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
   }
-  .tokey thead{ display:none !important }
-  .tokey tr{
-    margin:0 0 12px !important; background:#0F141C !important;
-    border:1px solid rgba(255,255,255,.10) !important; border-radius:14px !important;
-    overflow:hidden !important; box-shadow:0 10px 24px rgba(0,0,0,.35) !important;
-  }
-  .tokey td{ border-top:none !important; padding:10px 12px !important }
-  .tokey td::before{
-    content:attr(data-label) !important; display:block !important; font-weight:700 !important;
-    color:#EAF2FF !important; opacity:.95 !important; margin-bottom:2px !important;
-  }
+  @media (min-width:721px){ #mobile-debug-badge{ display:none } }
 
-  /* Footer breathing room */
-  footer{ padding:32px 0 80px !important }
-}
+  /* SAFETY: viewport + anchor offset (in case header is sticky) */
+  html{ scroll-behavior:smooth; scroll-padding-top:84px }
+  section[id]{ scroll-margin-top:84px }
 
-/* ---- Small/Mid tablets 721–1024px ---- */
-@media (min-width:721px) and (max-width:1024px){
-  .container{ padding:0 20px !important }
-  .steps{ display:grid !important; grid-template-columns:1fr !important; gap:16px !important }
-  .roadmap .grid{ display:grid !important; grid-template-columns:1fr !important; gap:16px !important }
-  .tokey table{ background:#0F141C !important; border:1px solid rgba(255,255,255,.10) !important }
-  .tokey thead th{ color:#EAF2FF !important }
-  .tokey td{ color:#D7E5F5 !important }
-}
+  /* Make dark surfaces readable */
+  .card,.panel,.step,.tokey table,.tokey th,.tokey td{ color:#EAF2FF !important }
+  .card p,.panel p,.step p,.tokey td{ color:#CFE0F0 !important }
 
-/* Motion safety */
-@media (prefers-reduced-motion:reduce){
-  .hero .giant::after,.hero-visual .mascot,.hero-art .mascot,body::before{ animation:none !important }
-}
-</style>
+  /* Media never overflows */
+  img,svg,canvas,video{ max-width:100% !important; height:auto !important }
 
-<style id="FRUMO_MOBILE_OVERRIDE_2">
-/* Viewport + anchor offset */
-html{scroll-behavior:smooth;scroll-padding-top:84px}
-section[id]{scroll-margin-top:84px}
+  /* ---- Phones <=720px ---- */
+  @media (max-width:720px){
+    .container{ padding:0 16px !important }
+    .section{ padding:40px 0 !important }
+    .section .container > * + *{ margin-top:20px !important }
 
-/* Base readability on dark */
-.card,.panel,#tokenomics table,#tokenomics th,#tokenomics td{color:#EAF2FF!important}
-.card p,.panel p,#tokenomics td{color:#CFE0F0!important}
+    /* Hero */
+    .hero{ padding-top:28px !important; text-align:center !important }
+    .hero .giant{ font-size:clamp(38px,16vw,62px) !important; letter-spacing:.12em !important }
+    .hero-visual,.hero-art{ margin-top:16px !important }
+    .hero-visual .mascot,.hero-art .mascot{ width:min(420px,78vw) !important; margin:0 auto !important }
 
-/* Media never overflow */
-img,svg,canvas,video{max-width:100%!important;height:auto!important}
+    /* Buttons stack full width */
+    .hero-cta,.cta-row,.actions{ display:flex; gap:10px !important; flex-wrap:wrap; justify-content:center }
+    .btn, a.btn{ width:100% !important; height:46px !important; justify-content:center !important }
 
-/* ---- Phones (<=720px) ---- */
-@media (max-width:720px){
-  .container{padding:0 16px!important}
-  section{padding:40px 0!important}
-  section .container>*+*{margin-top:20px!important}
+    /* How to Buy & Roadmap -> 1 column */
+    .steps{ display:grid !important; grid-template-columns:1fr !important; gap:14px !important }
+    .step{ padding:16px !important; border-radius:16px !important }
+    .roadmap .grid{ display:grid !important; grid-template-columns:1fr !important; gap:14px !important }
+    .roadmap .card{ min-height:0 !important; padding:16px !important; border-radius:16px !important }
 
-  /* Hero (first big title + mascot) */
-  h1, .giant{font-size:clamp(38px,16vw,62px)!important;letter-spacing:.12em!important;text-align:center!important}
-  .hero-visual,.hero-art{margin-top:16px!important}
-  .hero-visual img,.hero-art img{width:min(420px,78vw)!important;margin:0 auto!important;display:block!important}
+    /* Tokenomics table -> stacked cards */
+    .tokey table,.tokey thead,.tokey tbody,.tokey th,.tokey td,.tokey tr{
+      display:block !important; width:100% !important;
+    }
+    .tokey thead{ display:none !important }
+    .tokey tr{
+      margin:0 0 12px !important; background:#0F141C !important;
+      border:1px solid rgba(255,255,255,.10) !important; border-radius:14px !important;
+      overflow:hidden !important; box-shadow:0 10px 24px rgba(0,0,0,.35) !important;
+    }
+    .tokey td{ border-top:none !important; padding:10px 12px !important }
+    .tokey td::before{
+      content:attr(data-label) !important; display:block !important; font-weight:700 !important;
+      color:#EAF2FF !important; opacity:.95 !important; margin-bottom:2px !important;
+    }
 
-  /* CTAs → full width */
-  .hero-cta,.actions,.cta-row{display:flex;gap:10px!important;flex-wrap:wrap;justify-content:center}
-  a.btn, .btn{width:100%!important;height:46px!important;justify-content:center!important}
-
-  /* HOW TO BUY: if it’s an ordered list, turn each <li> into a card */
-  #howto ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:14px}
-  #howto ol>li{background:#0F141C;border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:16px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
-  #howto .cta-row{margin-top:10px}
-
-  /* ROADMAP: if it’s an ordered list, same treatment */
-  #roadmap ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:14px}
-  #roadmap ol>li{background:#0F141C;border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:16px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
-
-  /* TOKENOMICS: table → stacked “cards” */
-  #tokenomics table, #tokenomics thead, #tokenomics tbody, #tokenomics th, #tokenomics td, #tokenomics tr{
-    display:block!important;width:100%!important
-  }
-  #tokenomics thead{display:none!important}
-  #tokenomics tr{
-    margin:0 0 12px!important;background:#0F141C!important;
-    border:1px solid rgba(255,255,255,.10)!important;border-radius:14px!important;
-    overflow:hidden!important;box-shadow:0 10px 24px rgba(0,0,0,.35)!important
-  }
-  #tokenomics td{border-top:none!important;padding:10px 12px!important}
-  #tokenomics td::before{
-    content:attr(data-label)!important;display:block!important;font-weight:700!important;
-    color:#EAF2FF!important;opacity:.95!important;margin-bottom:2px!important
+    /* Footer breathing room */
+    footer{ padding:32px 0 80px !important }
   }
 
-  /* Footer breathing room */
-  footer{padding:32px 0 80px!important}
-}
-
-/* ---- Small/Mid tablets (721–1024px) ---- */
-@media (min-width:721px) and (max-width:1024px){
-  .container{padding:0 20px!important}
-  /* Force 1 column to avoid squeeze */
-  #howto ol, #roadmap ol{display:grid;grid-template-columns:1fr;gap:16px}
-  /* Keep tokenomics as table, but increase contrast */
-  #tokenomics table{background:#0F141C!important;border:1px solid rgba(255,255,255,.10)!important}
-  #tokenomics thead th{color:#EAF2FF!important}
-  #tokenomics td{color:#D7E5F5!important}
-}
-
-/* Motion safety */
-@media (prefers-reduced-motion:reduce){
-  body *{animation:none!important;transition:none!important}
-}
-</style>
-
-
-<style id="FRUMO_NAV_MOBILE_FIX">
-/* Make the header a clean, single row on phones */
-@media (max-width: 720px){
-  header, .site-nav { position: sticky; top: 0; left: 0; right: 0; z-index: 10; }
-  header .container { 
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; padding: 10px 12px !important;
-  }
-  /* brand/logo on the left */
-  header .brand, header .logo { flex: 0 0 auto; display:flex; align-items:center; gap:8px; }
-  header .brand img, header .logo img { width: 22px; height: 22px; display:block; }
-
-  /* centered links row that can scroll horizontally if needed */
-  header nav, header .nav, header .links, header .menu {
-    flex: 1 1 auto; display:flex; align-items:center; justify-content:center; 
-    gap: 18px; overflow-x:auto; white-space:nowrap; scrollbar-width:none; 
-    -ms-overflow-style:none; padding: 4px 0;
-  }
-  header nav::-webkit-scrollbar{ display:none; }
-
-  /* Buy button on the right, fixed size */
-  header .buy, header a.buy, header .cta-buy {
-    flex: 0 0 auto; min-width: 64px; height: 36px; display: inline-flex; 
-    align-items:center; justify-content:center; padding: 0 14px;
-    border-radius: 999px;
+  /* ---- Small/Mid tablets 721–1024px ---- */
+  @media (min-width:721px) and (max-width:1024px){
+    .container{ padding:0 20px !important }
+    .steps{ display:grid !important; grid-template-columns:1fr !important; gap:16px !important }
+    .roadmap .grid{ display:grid !important; grid-template-columns:1fr !important; gap:16px !important }
+    .tokey table{ background:#0F141C !important; border:1px solid rgba(255,255,255,.10) !important }
+    .tokey thead th{ color:#EAF2FF !important }
+    .tokey td{ color:#D7E5F5 !important }
   }
 
-  /* Remove weird inner line or offsets sometimes caused by transforms */
-  header, .site-nav, header * { transform: none !important; }
-}
+  /* Motion safety */
+  @media (prefers-reduced-motion:reduce){
+    .hero .giant::after,.hero-visual .mascot,.hero-art .mascot,body::before{ animation:none !important }
+  }
+  </style>
 
-/* Make tap targets responsive and make sure links are clickable */
-header a, header button { -webkit-tap-highlight-color: transparent; }
-a, button { pointer-events: auto !important; touch-action: manipulation; }
-</style>
+  <style id="FRUMO_MOBILE_OVERRIDE_2">
+  /* Viewport + anchor offset */
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  section[id]{scroll-margin-top:84px}
 
+  /* Base readability on dark */
+  .card,.panel,#tokenomics table,#tokenomics th,#tokenomics td{color:#EAF2FF!important}
+  .card p,.panel p,#tokenomics td{color:#CFE0F0!important}
 
-  
+  /* Media never overflow */
+  img,svg,canvas,video{max-width:100%!important;height:auto!important}
+
+  /* ---- Phones (<=720px) ---- */
+  @media (max-width:720px){
+    .container{padding:0 16px!important}
+    section{padding:40px 0!important}
+    section .container>*+*{margin-top:20px!important}
+
+    /* Hero (first big title + mascot) */
+    h1, .giant{font-size:clamp(38px,16vw,62px)!important;letter-spacing:.12em!important;text-align:center!important}
+    .hero-visual,.hero-art{margin-top:16px!important}
+    .hero-visual img,.hero-art img{width:min(420px,78vw)!important;margin:0 auto!important;display:block!important}
+
+    /* CTAs → full width */
+    .hero-cta,.actions,.cta-row{display:flex;gap:10px!important;flex-wrap:wrap;justify-content:center}
+    a.btn, .btn{width:100%!important;height:46px!important;justify-content:center!important}
+
+    /* HOW TO BUY: if it’s an ordered list, turn each <li> into a card */
+    #howto ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:14px}
+    #howto ol>li{background:#0F141C;border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:16px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+    #howto .cta-row{margin-top:10px}
+
+    /* ROADMAP: if it’s an ordered list, same treatment */
+    #roadmap ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:14px}
+    #roadmap ol>li{background:#0F141C;border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:16px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+
+    /* TOKENOMICS: table → stacked “cards” */
+    #tokenomics table, #tokenomics thead, #tokenomics tbody, #tokenomics th, #tokenomics td, #tokenomics tr{
+      display:block!important;width:100%!important
+    }
+    #tokenomics thead{display:none!important}
+    #tokenomics tr{
+      margin:0 0 12px!important;background:#0F141C!important;
+      border:1px solid rgba(255,255,255,.10)!important;border-radius:14px!important;
+      overflow:hidden!important;box-shadow:0 10px 24px rgba(0,0,0,.35)!important
+    }
+    #tokenomics td{border-top:none!important;padding:10px 12px!important}
+    #tokenomics td::before{
+      content:attr(data-label)!important;display:block!important;font-weight:700!important;
+      color:#EAF2FF!important;opacity:.95!important;margin-bottom:2px!important
+    }
+
+    /* Footer breathing room */
+    footer{padding:32px 0 80px!important}
+  }
+
+  /* ---- Small/Mid tablets (721–1024px) ---- */
+  @media (min-width:721px) and (max-width:1024px){
+    .container{padding:0 20px!important}
+    /* Force 1 column to avoid squeeze */
+    #howto ol, #roadmap ol{display:grid;grid-template-columns:1fr;gap:16px}
+    /* Keep tokenomics as table, but increase contrast */
+    #tokenomics table{background:#0F141C!important;border:1px solid rgba(255,255,255,.10)!important}
+    #tokenomics thead th{color:#EAF2FF!important}
+    #tokenomics td{color:#D7E5F5!important}
+  }
+
+  /* Motion safety */
+  @media (prefers-reduced-motion:reduce){
+    body *{animation:none!important;transition:none!important}
+  }
+  </style>
+
+  <!-- UPDATED: targets your real <nav class="nav"> structure -->
+  <style id="FRUMO_NAV_MOBILE_FIX">
+  @media (max-width: 720px){
+    .nav{ position: sticky; top: 0; left: 0; right: 0; z-index: 20; }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; padding:10px 12px !important;
+    }
+    .nav .brand{ flex:0 0 auto; display:flex; align-items:center; gap:8px; }
+    .nav .brand img{ width:22px; height:22px; display:block; }
+
+    .nav .links{
+      flex:1 1 auto; display:flex; align-items:center; justify-content:center;
+      gap:18px; overflow-x:auto; white-space:nowrap; scrollbar-width:none;
+      -ms-overflow-style:none; padding:4px 0;
+    }
+    .nav .links::-webkit-scrollbar{ display:none; }
+
+    .nav .cta .btn{
+      flex:0 0 auto; min-width:64px; height:36px; display:inline-flex;
+      align-items:center; justify-content:center; padding:0 14px; border-radius:999px;
+    }
+
+    /* Remove weird inner line or offsets sometimes caused by transforms */
+    .nav, .nav * { transform:none !important; }
+  }
+
+  /* Make tap targets responsive and make sure links are clickable */
+  .nav a, .nav button { -webkit-tap-highlight-color: transparent; }
+  a, button { pointer-events: auto !important; touch-action: manipulation; }
+  </style>
 </head>
 
 <body>
-
   <div id="mobile-debug-badge">MOBILE FIX ACTIVE</div>
-  <!-- rest of your page -->
-
-
-  <script>
-    /* Replace these as you go live */
-    window.FRUMO = {
-      tokenAddress: "PASTE_TOKEN_ADDRESS",
-      raydiumUrl: "https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_TOKEN",
-      dexScreenerUrl: "https://dexscreener.com/solana/PASTE_POOL_OR_TOKEN",
-      solscanUrl: "https://solscan.io/token/PASTE_TOKEN",
-      telegramUrl: "https://t.me/FrumoCoin",
-      twitterUrl: "https://x.com/FrumoCoin"
-    };
-  </script>
 
   <!-- Animated background layers -->
   <div class="bg-wrap">
@@ -240,30 +216,29 @@ a, button { pointer-events: auto !important; touch-action: manipulation; }
     <div class="bg-orb"></div>
   </div>
 
-<nav class="nav">
-<button class="nav-toggle" aria-expanded="false" aria-label="Menu">
-  <span></span><span></span><span></span>
-</button>
+  <nav class="nav">
+    <button class="nav-toggle" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
 
-  <div class="nav-inner container">
-    <a class="brand" href="#top">
-      <img src="assets/logo_plain.svg" alt="Frumo logo" />
-      <span>FRUMOCOIN</span>
-    </a>
+    <div class="nav-inner container">
+      <a class="brand" href="#top">
+        <img src="assets/logo_plain.svg" alt="Frumo logo" />
+        <span>FRUMOCOIN</span>
+      </a>
 
-    <div class="links">
-      <a href="#about">About</a>
-      <a href="#tokenomics">Tokenomics</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#community">Community</a>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#community">Community</a>
+      </div>
+
+      <div class="cta">
+        <a class="btn primary" href="#buy">Buy</a>
+      </div>
     </div>
-
-    <div class="cta">
-      <a class="btn primary" href="#buy">Buy</a>
-    </div>
-  </div>
-</nav>
-
+  </nav>
 
   <!-- Premium hero -->
   <header class="hero container" id="top">
@@ -281,24 +256,22 @@ a, button { pointer-events: auto !important; touch-action: manipulation; }
       </div>
 
       <div class="hero-art">
-		<img class="mascot" src="/assets/mascot.png" alt="Frumo mascot" />
-	  </div>
-
+        <img class="mascot" src="/assets/mascot.png" alt="Frumo mascot" />
+      </div>
     </div>
-  
+  </header>
 
   <section class="section" id="about">
     <div class="container">
       <h2>Who is Frumo?</h2>
       <p>
         Long ago, in a hidden valley where the rivers sang and the meadows shimmered, two legends crossed paths — the noble Doge, with his loyal heart and boundless energy, and the wise Pepe, guardian of laughter and peace.
-From their unlikely bond came something the world had never seen before — a small, green frog-dog with bright, curious eyes, a floppy tongue, and a golden crown that was just a little too big for his head. They called him <strong>Frumo</strong>.
+        From their unlikely bond came something the world had never seen before — a small, green frog-dog with bright, curious eyes, a floppy tongue, and a golden crown that was just a little too big for his head. They called him <strong>Frumo</strong>.
       </p>
-	  <p>
+      <p>
         Frumo grew up chasing fireflies by the pond and playfully barking at the stars. He was a creature of joy — silly but brave, carefree yet loyal. Over time, whispers of the frog with the golden crown spread beyond the valley. They spoke of his gift: wherever Frumo went, he brought unity, laughter, and a spark of chaos that could light up even the darkest nights.
-Now, Frumo has leapt beyond that quiet valley, hopping into the hearts of people everywhere. He isn’t here for power or gold — only for fun, friendship, and the wild ride to the moon.
+        Now, Frumo has leapt beyond that quiet valley, hopping into the hearts of people everywhere. He isn’t here for power or gold — only for fun, friendship, and the wild ride to the moon.
       </p>
-	  	  
     </div>
   </section>
 
@@ -383,287 +356,156 @@ Now, Frumo has leapt beyond that quiet valley, hopping into the hearts of people
       </div>
       <div class="copy">© <span id="year"></span> Frumo. All vibes reserved.</div>
     </div>
+  </footer>
 
-</footer>
+  <script>
+    /* Replace these as you go live */
+    window.FRUMO = {
+      tokenAddress: "PASTE_TOKEN_ADDRESS",
+      raydiumUrl: "https://raydium.io/swap/?inputCurrency=sol&outputCurrency=PASTE_TOKEN",
+      dexScreenerUrl: "https://dexscreener.com/solana/PASTE_POOL_OR_TOKEN",
+      solscanUrl: "https://solscan.io/token/PASTE_TOKEN",
+      telegramUrl: "https://t.me/FrumoCoin",
+      twitterUrl: "https://x.com/FrumoCoin"
+    };
+  </script>
 
   <script src="/js/app.js"></script>
-  
+
+  <!-- Add data-labels to tokenomics table for mobile cards -->
   <script>
-(function(){
-  var t=document.querySelector('.tokey table'); if(!t) return;
-  var heads=[].slice.call(t.querySelectorAll('thead th')).map(function(th){return th.textContent.trim()});
-  t.querySelectorAll('tbody tr').forEach(function(tr){
-    [].slice.call(tr.children).forEach(function(td,i){
-      if(!td.hasAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
-    });
-  });
-})();
-</script>
-
-<script>
-(function(){
-  function killOrphanEllipses(root){
-    if(!root) return;
-    // Remove top-level text nodes made of just dots
-    [...root.childNodes].forEach(function(n){
-      if(n.nodeType === 3){ // text
-        var s = (n.nodeValue || '').trim();
-        if (s === '...' || s === '…' || /^[.…]{2,}$/.test(s)) {
-          n.parentNode && n.parentNode.removeChild(n);
-        }
-      }
-    });
-    // Remove empty elements that only show ellipses
-    [...root.children].forEach(function(el){
-      var t = (el.textContent || '').trim();
-      if ((t === '...' || t === '…' || /^[.…]{2,}$/.test(t)) && el.children.length === 0) {
-        el.remove();
-      }
-    });
-  }
-  killOrphanEllipses(document.body);
-  killOrphanEllipses(document.querySelector('header'));
-})();
-</script>
-
-
-<script src="js/mobile-hotfix.js?v=1"></script>
-
-<script id="FRUMO_MOBILE_CLEANUP">
-(function(){
-  // Remove stray "..." or "…" text nodes/elements
-  function zapDots(root){
-    if(!root) return;
-    Array.from(root.childNodes).forEach(function(n){
-      if(n.nodeType===3){
-        var s=(n.nodeValue||'').trim();
-        if(s==='...' || s==='…' || /^[.…]{2,}$/.test(s)){ n.remove(); }
-      }
-    });
-    Array.from(root.querySelectorAll('*')).forEach(function(el){
-      if(el.children.length===0){
-        var t=(el.textContent||'').trim();
-        if(t==='...' || t==='…' || /^[.…]{2,}$/.test(t)){ el.remove(); }
-      }
-    });
-  }
-  zapDots(document.body);
-  new MutationObserver(function(){ zapDots(document.body); })
-    .observe(document.body,{childList:true,subtree:true});
-
-  // Tokenomics: add data-label to <td> from <thead>
-  var table = document.querySelector('.tokey table');
-  if(table){
-    var heads = Array.from(table.querySelectorAll('thead th')).map(function(th){ return (th.textContent||'').trim(); });
-    table.querySelectorAll('tbody tr').forEach(function(tr){
-      Array.from(tr.children).forEach(function(td,i){
-        if(!td.hasAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
-      });
-    });
-  }
-
-  // Debug flag so we know this script ran
-  document.body.setAttribute('data-mobile-fix','on');
-})();
-</script>
-
-
-<script id="FRUMO_MOBILE_SCRIPT_2">
-(function(){
-  // 1) Kill stray "..." / "…" nodes
-  function zapDots(root){
-    if(!root) return;
-    Array.from(root.childNodes).forEach(function(n){
-      if(n.nodeType===3){
-        var s=(n.nodeValue||'').trim();
-        if(s==='...' || s==='…' || /^[.…]{2,}$/.test(s)) n.remove();
-      }
-    });
-    Array.from(root.querySelectorAll('*')).forEach(function(el){
-      if(el.children.length===0){
-        var t=(el.textContent||'').trim();
-        if(t==='...' || t==='…' || /^[.…]{2,}$/.test(t)) el.remove();
-      }
-    });
-  }
-  zapDots(document.body);
-  new MutationObserver(function(){ zapDots(document.body); })
-    .observe(document.body,{childList:true,subtree:true});
-
-  // 2) Tokenomics: add data-labels based on THEAD
-  var t = document.querySelector('#tokenomics table');
-  if(t){
-    var heads = Array.from(t.querySelectorAll('thead th')).map(function(th){ return (th.textContent||'').trim(); });
+  (function(){
+    var t=document.querySelector('#tokenomics table, .tokey table'); if(!t) return;
+    var heads=[].slice.call(t.querySelectorAll('thead th')).map(function(th){return th.textContent.trim()});
     t.querySelectorAll('tbody tr').forEach(function(tr){
-      Array.from(tr.children).forEach(function(td,i){
+      [].slice.call(tr.children).forEach(function(td,i){
         if(!td.hasAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
       });
     });
+  })();
+  </script>
+
+  <!-- Remove stray "…" nodes some mobile browsers render -->
+  <script>
+  (function(){
+    function killOrphanEllipses(root){
+      if(!root) return;
+      [...root.childNodes].forEach(function(n){
+        if(n.nodeType===3){
+          var s=(n.nodeValue||'').trim();
+          if (s==='...' || s==='…' || /^[.…]{2,}$/.test(s)) n.remove();
+        }
+      });
+      [...root.querySelectorAll('*')].forEach(function(el){
+        if(el.children.length===0){
+          var t=(el.textContent||'').trim();
+          if(t==='...' || t==='…' || /^[.…]{2,}$/.test(t)) el.remove();
+        }
+      });
+    }
+    killOrphanEllipses(document.body);
+    new MutationObserver(function(){ killOrphanEllipses(document.body); })
+      .observe(document.body,{childList:true,subtree:true});
+  })();
+  </script>
+
+  <script src="js/mobile-hotfix.js?v=1"></script>
+
+  <!-- Keep hero/about visible above effects -->
+  <style id="FRUMO_TOP_VISIBILITY_FIX">
+  header, .site-nav, .hero, .hero * , #about, #about * , #howto, #howto * { position: relative !important; z-index: 2 !important; }
+  .bg-wrap, .bg, .background, .stars, .starfield, canvas.bg, #bg, .hero::before, .hero::after {
+    position: fixed !important; inset: 0 !important; z-index: 0 !important; pointer-events: none !important;
   }
-
-  // 3) Debug flag
-  document.body.setAttribute('data-mobile-fix-v2','on');
-})();
-</script>
-
-
-<style id="FRUMO_TOP_VISIBILITY_FIX">
-/* 1) Put ALL hero/early-section content above backgrounds */
-header, .site-nav, .hero, .hero * , #about, #about * , #howto, #howto * {
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-/* 2) Push ALL background effects behind, disable click-through */
-.bg-wrap, .bg, .background, .stars, .starfield, canvas.bg, #bg, .hero::before, .hero::after {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
-}
-
-/* 3) Kill any blend/shine overlays that can make text transparent on mobile */
-.hero .giant,
-.hero h1 {
-  /* Stop gradient/clipped text from rendering transparent */
-  background: none !important;
-  -webkit-background-clip: initial !important;
-  background-clip: initial !important;
-  -webkit-text-fill-color: initial !important;
-  mix-blend-mode: normal !important;
-  color: #EAF2FF !important;
-  text-shadow: none !important;
-}
-@media (max-width: 720px){
-  .hero .giant::after, .hero h1::after { display: none !important; }
-}
-
-/* 4) Ensure core heading/body text is visible in early sections */
-header, .site-nav, .hero, #about, #howto {
-  color: #EAF2FF !important;
-}
-header p, .hero p, #about p, #howto p,
-header li, .hero li, #about li, #howto li {
-  color: #CFE0F0 !important;
-}
-
-/* 5) Prevent sticky nav from covering first content row */
-html { scroll-padding-top: 96px; }
-section[id] { scroll-margin-top: 96px; }
-
-/* 6) Safety: images never overflow; hero spacing for mobile */
-img, svg, canvas { max-width: 100% !important; height: auto !important; }
-@media (max-width: 720px){
-  .hero { padding-top: 28px !important; }
-}
-
-/* 7) If there is any overlay/scrim on hero, tone it down */
-.hero .overlay, .hero .scrim, .hero .veil {
-  opacity: .35 !important;
-  mix-blend-mode: normal !important;
-}
-
-/* 8) If a full-screen backdrop filters above content, put it behind */
-[class*="backdrop"], [class*="blur"] {
-  z-index: 0 !important;
-  pointer-events: none !important;
-}
-</style>
-
-
-<script id="FRUMO_ACTIONS_WIRING">
-(function(){
-  // 1) Helper to open new tab safely
-  function go(url){
-    if(!url) return;
-    try { window.open(url, '_blank', 'noopener'); } catch(e){}
+  .hero .giant, .hero h1{
+    background: none !important; -webkit-background-clip: initial !important; background-clip: initial !important;
+    -webkit-text-fill-color: initial !important; mix-blend-mode: normal !important; color: #EAF2FF !important; text-shadow: none !important;
   }
-  // 2) Get contract address from a single source of truth
-  //    Prefer a data attribute. Fallback to visible text node in a #contract element.
-  function getContract(){
-    var el = document.querySelector('[data-contract-address]') || 
-             document.getElementById('contract-address') ||
-             document.querySelector('#contract, .contract');
-    if(!el) return '';
-    var v = (el.getAttribute && el.getAttribute('data-contract-address')) || (el.textContent || '');
-    return (v || '').trim();
-  }
-  var CONTRACT = getContract();
+  @media (max-width: 720px){ .hero .giant::after, .hero h1::after { display: none !important; } }
+  header, .site-nav, .hero, #about, #howto { color: #EAF2FF !important; }
+  header p, .hero p, #about p, #howto p, header li, .hero li, #about li, #howto li { color: #CFE0F0 !important; }
+  html { scroll-padding-top: 96px; } section[id] { scroll-margin-top: 96px; }
+  img, svg, canvas { max-width: 100% !important; height: auto !important; }
+  @media (max-width: 720px){ .hero { padding-top: 28px !important; } }
+  .hero .overlay, .hero .scrim, .hero .veil { opacity: .35 !important; mix-blend-mode: normal !important; }
+  [class*="backdrop"], [class*="blur"] { z-index: 0 !important; pointer-events: none !important; }
+  </style>
 
-  // 3) Raydium / Solscan / X / Telegram URLs (you can set these in HTML as data-* too)
-  //    Example in HTML: <a class="btn" id="btn-raydium" data-href="https://raydium.io/swap/?inputCurrency=...">Swap</a>
-  
-  
-  function pick(el, fallback){
-    return (el && el.getAttribute && el.getAttribute('data-href')) || fallback || '';
-  }
-  var elRay   = document.getElementById('btn-raydium');
-  var elSol   = document.getElementById('btn-solscan');
-  var elTw    = document.getElementById('btn-twitter');
-  var elTg    = document.getElementById('btn-telegram');
-  var elView  = document.getElementById('btn-viewchart');
-  var elCopy  = document.getElementById('btn-copy'); // "Copy Address" button
+  <!-- UPDATED: wire both your IDs and generic ones, with FRUMO fallbacks -->
+  <script id="FRUMO_ACTIONS_WIRING">
+  (function(){
+    function go(url){ if(url){ try{ window.open(url,'_blank','noopener'); }catch(e){} } }
 
-  // Build Solscan link from contract if not provided
-  var solscanURL = pick(elSol);
-  if(!solscanURL){
-    solscanURL = CONTRACT ? ('https://solscan.io/token/' + CONTRACT) : 'https://solscan.io';
-  }
+    function getContract(){
+      var el = document.querySelector('[data-contract-address]') ||
+               document.getElementById('contract-address') ||
+               document.getElementById('addr') ||
+               document.querySelector('#contract, .contract');
+      if(!el) return (window.FRUMO && window.FRUMO.tokenAddress) || '';
+      var v = (el.getAttribute && el.getAttribute('data-contract-address')) || (el.textContent || '');
+      v = (v || '').trim();
+      return v || (window.FRUMO && window.FRUMO.tokenAddress) || '';
+    }
+    var CONTRACT = getContract();
 
-  // If you have these later, just set data-href on the element in HTML
-  var rayURL  = pick(elRay);
-  var twURL   = pick(elTw,  'https://twitter.com/');     // put your X link in data-href
-  var tgURL   = pick(elTg,  'https://t.me/');            // put your Telegram in data-href
-  var chartURL= pick(elView);                            // e.g. dexscreener
-
-  // 4) Wire clicks if elements exist
-  if(elRay)  elRay.addEventListener('click',  function(e){ e.preventDefault(); go(rayURL);  });
-  if(elSol)  elSol.addEventListener('click',  function(e){ e.preventDefault(); go(solscanURL); });
-  if(elTw)   elTw.addEventListener('click',   function(e){ e.preventDefault(); go(twURL);   });
-  if(elTg)   elTg.addEventListener('click',   function(e){ e.preventDefault(); go(tgURL);   });
-  if(elView) elView.addEventListener('click', function(e){ e.preventDefault(); go(chartURL);});
-
-  // 5) Copy contract button
-  if(elCopy){
-    elCopy.addEventListener('click', async function(e){
-      e.preventDefault();
-      var addr = CONTRACT;
-      if(!addr){
-        // fall back: try reading nearest text node
-        var src = document.querySelector('#contract-address, [data-contract-address]') || document.querySelector('#contract, .contract');
-        addr = (src && (src.getAttribute && src.getAttribute('data-contract-address'))) || (src && src.textContent) || '';
-        addr = (addr || '').trim();
+    function pickEl(){
+      var ids = Array.prototype.slice.call(arguments);
+      for (var i=0;i<ids.length;i++){
+        var el = document.getElementById(ids[i]);
+        if(el) return el;
       }
-      if(!addr){ elCopy.textContent = 'No Address'; return; }
-      try{
-        await navigator.clipboard.writeText(addr);
-        var prev = elCopy.textContent;
-        elCopy.textContent = 'Copied!';
-        setTimeout(function(){ elCopy.textContent = prev; }, 1200);
-      }catch(err){
-        // fallback for older browsers
-        var ta = document.createElement('textarea');
-        ta.value = addr; document.body.appendChild(ta); ta.select();
-        try{ document.execCommand('copy'); }catch(e){}
-        document.body.removeChild(ta);
-        var prev2 = elCopy.textContent;
-        elCopy.textContent = 'Copied!';
-        setTimeout(function(){ elCopy.textContent = prev2; }, 1200);
-      }
-    });
-  }
+      return null;
+    }
+    function pickUrl(el, fb){
+      return (el && el.getAttribute && el.getAttribute('data-href')) || fb || '';
+    }
 
-  // 6) Ensure no invisible overlay blocks taps
-  var blockers = document.querySelectorAll('.overlay, .scrim, .veil, .backdrop, [class*="overlay"], [class*="scrim"], [class*="veil"], [class*="backdrop"]');
-  blockers.forEach(function(b){ b.style.pointerEvents = 'none'; });
+    var elRay  = pickEl('btn-raydium','raydiumBtn');
+    var elSol  = pickEl('btn-solscan','scanBtn');
+    var elTw   = pickEl('btn-twitter','xBtn','twitterBtn','followX');
+    var elTg   = pickEl('btn-telegram','tgBtn','joinTg');
+    var elView = pickEl('btn-viewchart','chartBtn');
+    var elCopy = pickEl('btn-copy','copyBtn');
 
-  // 7) Make sure all anchors actually receive input
-  document.querySelectorAll('a,button').forEach(function(el){
-    el.style.pointerEvents = 'auto';
-  });
-})();
-</script>
+    var rayURL   = pickUrl(elRay,  (window.FRUMO && window.FRUMO.raydiumUrl)   || '');
+    var twURL    = pickUrl(elTw,   (window.FRUMO && window.FRUMO.twitterUrl)   || 'https://twitter.com/');
+    var tgURL    = pickUrl(elTg,   (window.FRUMO && window.FRUMO.telegramUrl)  || 'https://t.me/');
+    var chartURL = pickUrl(elView, (window.FRUMO && window.FRUMO.dexScreenerUrl) || '');
+    var solscanURL = pickUrl(elSol);
+    if(!solscanURL){
+      solscanURL = CONTRACT ? ('https://solscan.io/token/' + CONTRACT)
+                            : ((window.FRUMO && window.FRUMO.solscanUrl) || 'https://solscan.io');
+    }
 
+    if(elRay)  elRay.addEventListener('click',  function(e){ e.preventDefault(); go(rayURL);  });
+    if(elSol)  elSol.addEventListener('click',  function(e){ e.preventDefault(); go(solscanURL); });
+    if(elTw)   elTw.addEventListener('click',   function(e){ e.preventDefault(); go(twURL);   });
+    if(elTg)   elTg.addEventListener('click',   function(e){ e.preventDefault(); go(tgURL);   });
+    if(elView) elView.addEventListener('click', function(e){ e.preventDefault(); go(chartURL);});
 
+    if(elCopy){
+      elCopy.addEventListener('click', async function(e){
+        e.preventDefault();
+        var addr = CONTRACT;
+        if(!addr){ this.textContent = 'No Address'; return; }
+        try{
+          await navigator.clipboard.writeText(addr);
+          var prev = this.textContent; this.textContent = 'Copied!'; setTimeout(()=>this.textContent=prev, 1200);
+        }catch(err){
+          var ta = document.createElement('textarea'); ta.value = addr; document.body.appendChild(ta); ta.select();
+          try{ document.execCommand('copy'); }catch(e){}
+          document.body.removeChild(ta);
+          var prev2 = this.textContent; this.textContent='Copied!'; setTimeout(()=>this.textContent=prev2, 1200);
+        }
+      });
+    }
+
+    // Remove any invisible overlays that might block taps
+    document.querySelectorAll('.overlay, .scrim, .veil, .backdrop, [class*="overlay"], [class*="scrim"], [class*="veil"], [class*="backdrop"]')
+      .forEach(function(b){ b.style.pointerEvents='none'; });
+
+    document.querySelectorAll('a,button').forEach(function(el){ el.style.pointerEvents='auto'; });
+  })();
+  </script>
 </body>
 </html>
