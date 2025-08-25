@@ -87,3 +87,27 @@
     });
   });
 })();
+
+
+// Add data-labels to tokenomics <td> (for stacked mobile view)
+(() => {
+  const table = document.querySelector('.tokey table');
+  if (!table) return;
+  const headers = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+  table.querySelectorAll('tbody tr').forEach(row => {
+    [...row.children].forEach((td, i) => {
+      if (!td.hasAttribute('data-label') && headers[i]) td.setAttribute('data-label', headers[i]);
+    });
+  });
+})();
+
+// Mobile burger toggle
+(() => {
+  const nav = document.querySelector('.site-nav');
+  const btn = document.querySelector('.nav-toggle');
+  if (!nav || !btn) return;
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
