@@ -100,6 +100,78 @@ img,svg,canvas,video{ max-width:100% !important; height:auto !important }
 }
 </style>
 
+<style id="FRUMO_MOBILE_OVERRIDE_2">
+/* Viewport + anchor offset */
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+section[id]{scroll-margin-top:84px}
+
+/* Base readability on dark */
+.card,.panel,#tokenomics table,#tokenomics th,#tokenomics td{color:#EAF2FF!important}
+.card p,.panel p,#tokenomics td{color:#CFE0F0!important}
+
+/* Media never overflow */
+img,svg,canvas,video{max-width:100%!important;height:auto!important}
+
+/* ---- Phones (<=720px) ---- */
+@media (max-width:720px){
+  .container{padding:0 16px!important}
+  section{padding:40px 0!important}
+  section .container>*+*{margin-top:20px!important}
+
+  /* Hero (first big title + mascot) */
+  h1, .giant{font-size:clamp(38px,16vw,62px)!important;letter-spacing:.12em!important;text-align:center!important}
+  .hero-visual,.hero-art{margin-top:16px!important}
+  .hero-visual img,.hero-art img{width:min(420px,78vw)!important;margin:0 auto!important;display:block!important}
+
+  /* CTAs → full width */
+  .hero-cta,.actions,.cta-row{display:flex;gap:10px!important;flex-wrap:wrap;justify-content:center}
+  a.btn, .btn{width:100%!important;height:46px!important;justify-content:center!important}
+
+  /* HOW TO BUY: if it’s an ordered list, turn each <li> into a card */
+  #howto ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:14px}
+  #howto ol>li{background:#0F141C;border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:16px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+  #howto .cta-row{margin-top:10px}
+
+  /* ROADMAP: if it’s an ordered list, same treatment */
+  #roadmap ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:14px}
+  #roadmap ol>li{background:#0F141C;border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:16px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+
+  /* TOKENOMICS: table → stacked “cards” */
+  #tokenomics table, #tokenomics thead, #tokenomics tbody, #tokenomics th, #tokenomics td, #tokenomics tr{
+    display:block!important;width:100%!important
+  }
+  #tokenomics thead{display:none!important}
+  #tokenomics tr{
+    margin:0 0 12px!important;background:#0F141C!important;
+    border:1px solid rgba(255,255,255,.10)!important;border-radius:14px!important;
+    overflow:hidden!important;box-shadow:0 10px 24px rgba(0,0,0,.35)!important
+  }
+  #tokenomics td{border-top:none!important;padding:10px 12px!important}
+  #tokenomics td::before{
+    content:attr(data-label)!important;display:block!important;font-weight:700!important;
+    color:#EAF2FF!important;opacity:.95!important;margin-bottom:2px!important
+  }
+
+  /* Footer breathing room */
+  footer{padding:32px 0 80px!important}
+}
+
+/* ---- Small/Mid tablets (721–1024px) ---- */
+@media (min-width:721px) and (max-width:1024px){
+  .container{padding:0 20px!important}
+  /* Force 1 column to avoid squeeze */
+  #howto ol, #roadmap ol{display:grid;grid-template-columns:1fr;gap:16px}
+  /* Keep tokenomics as table, but increase contrast */
+  #tokenomics table{background:#0F141C!important;border:1px solid rgba(255,255,255,.10)!important}
+  #tokenomics thead th{color:#EAF2FF!important}
+  #tokenomics td{color:#D7E5F5!important}
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion:reduce){
+  body *{animation:none!important;transition:none!important}
+}
+</style>
 
 
   
@@ -355,6 +427,45 @@ Now, Frumo has leapt beyond that quiet valley, hopping into the hearts of people
 
   // Debug flag so we know this script ran
   document.body.setAttribute('data-mobile-fix','on');
+})();
+</script>
+
+
+<script id="FRUMO_MOBILE_SCRIPT_2">
+(function(){
+  // 1) Kill stray "..." / "…" nodes
+  function zapDots(root){
+    if(!root) return;
+    Array.from(root.childNodes).forEach(function(n){
+      if(n.nodeType===3){
+        var s=(n.nodeValue||'').trim();
+        if(s==='...' || s==='…' || /^[.…]{2,}$/.test(s)) n.remove();
+      }
+    });
+    Array.from(root.querySelectorAll('*')).forEach(function(el){
+      if(el.children.length===0){
+        var t=(el.textContent||'').trim();
+        if(t==='...' || t==='…' || /^[.…]{2,}$/.test(t)) el.remove();
+      }
+    });
+  }
+  zapDots(document.body);
+  new MutationObserver(function(){ zapDots(document.body); })
+    .observe(document.body,{childList:true,subtree:true});
+
+  // 2) Tokenomics: add data-labels based on THEAD
+  var t = document.querySelector('#tokenomics table');
+  if(t){
+    var heads = Array.from(t.querySelectorAll('thead th')).map(function(th){ return (th.textContent||'').trim(); });
+    t.querySelectorAll('tbody tr').forEach(function(tr){
+      Array.from(tr.children).forEach(function(td,i){
+        if(!td.hasAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
+      });
+    });
+  }
+
+  // 3) Debug flag
+  document.body.setAttribute('data-mobile-fix-v2','on');
 })();
 </script>
 
