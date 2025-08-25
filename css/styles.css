@@ -243,13 +243,6 @@ th{text-align:left; color:var(--muted); font-size:13px}
 
 
 
-
-
-
-
-
-
-
 /* === Hero spacing: add room between badge and FRUMO title === */
 .hero .brand-pill{
   margin-bottom: 14px !important;  /* space below "Born of Doge & Pepe..." */
@@ -712,4 +705,67 @@ img.hero-mascot{
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
   #frumo-bg{ background-attachment: fixed; }
+}
+
+
+
+
+
+/* --- BUY CARD: mobile layout + long-address wrapping --- */
+@media (max-width: 768px) {
+  /* make the whole card breathe a bit on mobile */
+  #buy.panel,
+  #buy.card {
+    padding: 20px 18px;
+  }
+
+  /* Contract label spacing */
+  #buy .muted {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* The address itself: force wrap and keep it readable */
+  #buy code#addr {
+    display: block;
+    max-width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    line-height: 1.35;
+    font-size: 14px;
+    overflow: hidden;
+
+    /* The key bits to prevent overflow: */
+    word-break: break-word;       /* modern */
+    overflow-wrap: anywhere;      /* modern */
+    word-wrap: break-word;        /* legacy fallback */
+  }
+
+  /* Stack actions vertically with nice spacing */
+  #buy .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  /* Full-width buttons on mobile */
+  #buy .actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+}
+
+/* Optional: very small phones */
+@media (max-width: 380px) {
+  #buy code#addr {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+  #buy .actions .btn {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
 }
