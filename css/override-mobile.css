@@ -1,52 +1,48 @@
-/* ===== FRUMO mobile/tablet overrides (clean) ===== */
 
-img,svg,canvas,video{max-width:100%;height:auto}
+/* ===== FRUMO MOBILE RESCUE (load last) ===== */
 
-/* Phone first */
-@media (max-width: 720px){
-  .container{padding:0 16px !important}
-  .section{padding:40px 0 !important}
-  .hero{padding-top:28px !important;text-align:center}
-  .hero .giant{font-size:clamp(38px,16vw,62px);letter-spacing:.12em}
-  .hero-cta,.actions,.cta-row{gap:10px;justify-content:center}
-  .btn{width:100%;height:46px;justify-content:center}
+/* General readability and image containment */
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+img,svg,canvas,video{max-width:100%!important;height:auto!important}
+.card,.panel,.step,.tokey table,.tokey th,.tokey td{color:#EAF2FF!important}
+.card p,.panel p,.step p,.tokey td{color:#CFE0F0!important}
 
-  /* mascot */
-  .hero-visual .mascot,.hero-art .mascot{width:min(420px,78vw);margin:0 auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.45))}
+/* Phones */
+@media (max-width:720px){
+  .container{padding:0 16px!important}
+  .section{padding:40px 0!important}
+  .section .container>*+*{margin-top:20px!important}
 
-  /* cards */
-  .steps{display:grid;grid-template-columns:1fr;gap:14px}
-  .step{padding:16px;border-radius:16px}
+  .hero{padding-top:28px!important;text-align:center!important}
+  .hero .giant{font-size:clamp(38px,16vw,62px)!important;letter-spacing:.12em!important}
+  .hero-visual,.hero-art{margin-top:16px!important}
+  .hero-visual .mascot,.hero-art .mascot{width:min(420px,78vw)!important;margin:0 auto!important;filter:drop-shadow(0 10px 24px rgba(0,0,0,.45))!important}
 
-  .roadmap .grid{display:grid;grid-template-columns:1fr;gap:14px}
-  .roadmap .card{min-height:0;padding:16px;border-radius:16px}
+  .hero-cta,.cta-row,.actions{display:flex;gap:10px!important;flex-wrap:wrap;justify-content:center}
+  .btn{width:100%!important;height:46px!important;justify-content:center!important}
 
-  /* tokenomics header grid */
-  .tokey{grid-template-columns:1fr !important}
+  .steps,.roadmap .grid{display:grid!important;grid-template-columns:1fr!important;gap:14px!important}
+  .step,.roadmap .card{padding:16px!important;border-radius:16px!important;min-height:0!important}
 
-  /* table -> stacked cards */
-  .tokey table, .tokey thead, .tokey tbody, .tokey th, .tokey td, .tokey tr{display:block;width:100%}
-  .tokey thead{display:none}
-  .tokey tr{margin:0 0 12px;background:#0f141c;border:1px solid rgba(255,255,255,.10);border-radius:14px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.35)}
-  .tokey td{border-top:none;padding:10px 12px;color:#dbe8f7}
-  .tokey td::before{content:attr(data-label);display:block;font-weight:700;color:#eef6ff;opacity:.95;margin-bottom:2px}
+  .tokey table,.tokey thead,.tokey tbody,.tokey th,.tokey td,.tokey tr{display:block!important;width:100%!important}
+  .tokey thead{display:none!important}
+  .tokey tr{margin:0 0 12px!important;background:#0F141C!important;border:1px solid rgba(255,255,255,.10)!important;border-radius:14px!important;overflow:hidden!important;box-shadow:0 10px 24px rgba(0,0,0,.35)!important}
+  .tokey td{border-top:none!important;padding:10px 12px!important}
+  .tokey td::before{content:attr(data-label)!important;display:block!important;font-weight:700!important;color:#EAF2FF!important;opacity:.95!important;margin-bottom:2px!important}
 
-  footer{padding:32px 0 80px}
+  footer{padding:32px 0 80px!important}
 }
 
-/* Small & mid tablets */
-@media (min-width:721px) and (max-width: 1200px){
-  .container{padding:0 20px}
-  .steps{display:grid;grid-template-columns:1fr;gap:16px}
-  .roadmap .grid{display:grid;grid-template-columns:1fr;gap:16px}
-
-  /* keep table but increase contrast */
-  .tokey table{background:#0f141c;border:1px solid rgba(255,255,255,.10)}
-  .tokey thead th{color:#eef6ff}
-  .tokey td{color:#dbe8f7}
+/* Tablets */
+@media (min-width:721px) and (max-width:1024px){
+  .container{padding:0 20px!important}
+  .steps,.roadmap .grid{display:grid!important;grid-template-columns:1fr!important;gap:16px!important}
+  .tokey table{background:#0F141C!important;border:1px solid rgba(255,255,255,.10)!important}
+  .tokey thead th{color:#EAF2FF!important}
+  .tokey td{color:#D7E5F5!important}
 }
 
-/* Motion safety */
-@media (prefers-reduced-motion: reduce){
+/* Motion Safety */
+@media (prefers-reduced-motion:reduce){
   .hero .giant::after,.hero-visual .mascot,.hero-art .mascot,body::before{animation:none!important}
 }
