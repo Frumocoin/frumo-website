@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
   <title>Frumo — the people’s frog-dog</title>
   <meta name="description" content="Frumo — the crowned frog-dog. People-powered, meme-fueled, premium vibes." />
   <meta property="og:title" content="Frumo — the people’s frog-dog" />
@@ -20,85 +21,70 @@
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="stylesheet" href="css/override-mobile.css"> <!-- add this -->
   
-  <style id="frumo-mobile-fixes">
-/* ===== FRUMO MOBILE/TABLET OVERRIDES (append-only, high-specificity) ===== */
+ <style id="frumo-mobile-hotfix">
+/* ——— General safety ——— */
+html{scroll-behavior:smooth;scroll-padding-top:84px;}
+img,svg,canvas,video{max-width:100%;height:auto;}
+/* text on dark */
+.card,.panel,.step,.tokey table,.tokey th,.tokey td{color:#EAF2FF!important}
+.card p,.panel p,.step p,.tokey td{color:#CFE0F0!important}
 
-/* 0) Base contrast for dark surfaces */
-.card, .panel, .step, .tokey table, .tokey th, .tokey td { color:#EAF2FF !important; }
-.card p, .panel p, .step p, .tokey td { color:#CFE0F0 !important; }
-
-/* 1) Images never overflow */
-img, svg, canvas, video { max-width:100% !important; height:auto !important; }
-
-/* 2) Anchor offset for sticky nav */
-html { scroll-behavior:smooth; scroll-padding-top: 84px; }
-section[id] { scroll-margin-top: 84px; }
-
-/* ---------- Phones (<=720px) ---------- */
+/* —— Phones ≤720px —— */
 @media (max-width:720px){
+  .container{padding:0 16px!important}
+  .section{padding:40px 0!important}
+  .section .container>*+*{margin-top:20px!important}
 
-  /* Layout gutters + rhythm */
-  .container { padding: 0 16px !important; }
-  .section { padding: 40px 0 !important; }
-  .section .container > * + * { margin-top: 20px !important; }
+  /* Hero */
+  .hero{padding-top:28px!important;text-align:center!important}
+  .hero .giant{font-size:clamp(38px,16vw,62px)!important;letter-spacing:.12em!important}
+  .hero-visual,.hero-art{margin-top:16px!important}
+  .hero-visual .mascot,.hero-art .mascot{width:min(420px,78vw)!important;margin:0 auto!important;filter:drop-shadow(0 10px 24px rgba(0,0,0,.45))!important}
 
-  /* Hero sizing */
-  .hero { padding-top: 28px !important; text-align: center !important; }
-  .hero .giant { font-size: clamp(38px, 16vw, 62px) !important; letter-spacing: .12em !important; }
-  .hero-visual, .hero-art { margin-top: 16px !important; }
-  .hero-visual .mascot, .hero-art .mascot { width: min(420px, 78vw) !important; margin: 0 auto !important; }
+  /* CTAs full width */
+  .hero-cta,.cta-row,.actions{display:flex;gap:10px!important;flex-wrap:wrap;justify-content:center}
+  .btn{width:100%!important;height:46px!important;justify-content:center!important}
 
-  /* CTAs full-width for tap comfort */
-  .hero-cta, .cta-row, .actions { display:flex; gap:10px !important; flex-wrap:wrap; justify-content:center; }
-  .btn { width:100% !important; height:46px !important; justify-content:center !important; }
+  /* How to Buy / Roadmap → 1 column */
+  .steps{display:grid!important;grid-template-columns:1fr!important;gap:14px!important}
+  .step{padding:16px!important;border-radius:16px!important}
+  .roadmap .grid{display:grid!important;grid-template-columns:1fr!important;gap:14px!important}
+  .roadmap .card{min-height:0!important;padding:16px!important;border-radius:16px!important}
 
-  /* How to Buy & Roadmap → 1 column */
-  .steps { display:grid !important; grid-template-columns: 1fr !important; gap: 14px !important; }
-  .step { padding:16px !important; border-radius:16px !important; }
-  .roadmap .grid { display:grid !important; grid-template-columns: 1fr !important; gap:14px !important; }
-  .roadmap .card { min-height:0 !important; padding:16px !important; border-radius:16px !important; }
-
-  /* Tokenomics: stacked cards with labels */
-  .tokey table, .tokey thead, .tokey tbody, .tokey th, .tokey td, .tokey tr { display:block !important; width:100% !important; }
-  .tokey thead { display:none !important; }
-  .tokey tr {
-    margin: 0 0 12px !important;
-    background:#0F141C !important;
-    border:1px solid rgba(255,255,255,.10) !important;
-    border-radius:14px !important;
-    overflow:hidden !important;
-    box-shadow:0 10px 24px rgba(0,0,0,.35) !important;
+  /* Tokenomics table → stacked cards */
+  .tokey table,.tokey thead,.tokey tbody,.tokey th,.tokey td,.tokey tr{display:block!important;width:100%!important}
+  .tokey thead{display:none!important}
+  .tokey tr{
+    margin:0 0 12px!important;background:#0F141C!important;
+    border:1px solid rgba(255,255,255,.1)!important;border-radius:14px!important;
+    overflow:hidden!important;box-shadow:0 10px 24px rgba(0,0,0,.35)!important
   }
-  .tokey td { border-top:none !important; padding:10px 12px !important; }
-  .tokey td::before {
-    content: attr(data-label) !important;
-    display:block !important; font-weight:700 !important; color:#EAF2FF !important;
-    opacity:.95 !important; margin-bottom:2px !important;
+  .tokey td{border-top:none!important;padding:10px 12px!important}
+  .tokey td::before{
+    content:attr(data-label)!important;display:block!important;
+    font-weight:700!important;color:#EAF2FF!important;opacity:.95!important;margin-bottom:2px!important
   }
 
   /* Footer breathing room */
-  footer { padding: 32px 0 80px !important; }
+  footer{padding:32px 0 80px!important}
 }
 
-/* ---------- Small/Mid tablets (721–1024px) ---------- */
+/* —— Small/Mid tablets 721–1024px —— */
 @media (min-width:721px) and (max-width:1024px){
-  .container { padding: 0 20px !important; }
-
-  /* Stack sooner to avoid cramped two-up */
-  .steps { display:grid !important; grid-template-columns: 1fr !important; gap:16px !important; }
-  .roadmap .grid { display:grid !important; grid-template-columns: 1fr !important; gap:16px !important; }
-
-  /* Tokenomics stays table but with contrast */
-  .tokey table { background:#0F141C !important; border:1px solid rgba(255,255,255,.10) !important; }
-  .tokey thead th { color:#EAF2FF !important; }
-  .tokey td { color:#D7E5F5 !important; }
+  .container{padding:0 20px!important}
+  .steps{display:grid!important;grid-template-columns:1fr!important;gap:16px!important}
+  .roadmap .grid{display:grid!important;grid-template-columns:1fr!important;gap:16px!important}
+  .tokey table{background:#0F141C!important;border:1px solid rgba(255,255,255,.1)!important}
+  .tokey thead th{color:#EAF2FF!important}
+  .tokey td{color:#D7E5F5!important}
 }
 
-/* Motion safety */
-@media (prefers-reduced-motion: reduce){
-  .hero .giant::after, .hero-visual .mascot, .hero-art .mascot, body::before { animation: none !important; }
+/* motion safety */
+@media (prefers-reduced-motion:reduce){
+  .hero .giant::after,.hero-visual .mascot,.hero-art .mascot,body::before{animation:none!important}
 }
 </style>
+
 
   
 </head>
@@ -174,11 +160,15 @@ section[id] { scroll-margin-top: 84px; }
   <section class="section" id="about">
     <div class="container">
       <h2>Who is Frumo?</h2>
-      <p class="lead">
-        In a hidden valley where rivers sing and meadows bark, Doge met Pepe.
-        From their bond came a tiny heir with a golden crown and a heart full of joy: <strong>Frumo</strong> —
-        half ribbit, half bark, all heart.
+      <p>
+        Long ago, in a hidden valley where the rivers sang and the meadows shimmered, two legends crossed paths — the noble Doge, with his loyal heart and boundless energy, and the wise Pepe, guardian of laughter and peace.
+From their unlikely bond came something the world had never seen before — a small, green frog-dog with bright, curious eyes, a floppy tongue, and a golden crown that was just a little too big for his head. They called him <strong>Frumo</strong>.
       </p>
+	  <p>
+        Frumo grew up chasing fireflies by the pond and playfully barking at the stars. He was a creature of joy — silly but brave, carefree yet loyal. Over time, whispers of the frog with the golden crown spread beyond the valley. They spoke of his gift: wherever Frumo went, he brought unity, laughter, and a spark of chaos that could light up even the darkest nights.
+Now, Frumo has leapt beyond that quiet valley, hopping into the hearts of people everywhere. He isn’t here for power or gold — only for fun, friendship, and the wild ride to the moon.
+      </p>
+	  	  
     </div>
   </section>
 
@@ -267,5 +257,19 @@ section[id] { scroll-margin-top: 84px; }
 </footer>
 
   <script src="/js/app.js"></script>
+  
+  <script>
+(function(){
+  var t=document.querySelector('.tokey table'); if(!t) return;
+  var heads=[].slice.call(t.querySelectorAll('thead th')).map(function(th){return th.textContent.trim()});
+  t.querySelectorAll('tbody tr').forEach(function(tr){
+    [].slice.call(tr.children).forEach(function(td,i){
+      if(!td.hasAttribute('data-label') && heads[i]) td.setAttribute('data-label', heads[i]);
+    });
+  });
+})();
+</script>
+
+
 </body>
 </html>
