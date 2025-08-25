@@ -1,0 +1,84 @@
+/* ===== FRUMO MOBILE/TABLET OVERRIDES (takes precedence) ===== */
+
+/* make dark panels readable on mobile */
+.card, .panel, .step, .tokey table, .tokey td, .tokey th { color:#e9f1ff !important; }
+.card p, .panel p, .step p, .tokey td { color:#cfe0f0 !important; }
+
+/* never let media overflow */
+img, svg, canvas, video { max-width:100% !important; height:auto !important; }
+
+/* ---------- phones (<= 720px) ---------- */
+@media (max-width:720px){
+
+  /* consistent gutters & rhythm */
+  .container{ padding:0 16px !important; }
+  .section{ padding:40px 0 !important; }
+  .section .container > * + *{ margin-top:20px !important; }
+
+  /* HERO — shrink headline & mascot, center CTAs */
+  .hero{ padding-top:28px !important; text-align:center !important; }
+  .hero .giant{
+    font-size:clamp(38px,16vw,62px) !important;
+    letter-spacing:.12em !important;
+  }
+  .hero-visual, .hero-art{ margin-top:16px !important; }
+  .hero-visual .mascot, .hero-art .mascot{
+    width:min(420px,78vw) !important;
+    margin:0 auto !important;
+    filter:drop-shadow(0 12px 24px rgba(0,0,0,.45)) !important;
+  }
+
+  /* buttons: full-width, comfy tap targets */
+  .hero-cta, .cta-row, .actions { gap:10px !important; justify-content:center !important; }
+  .btn { width:100% !important; height:46px !important; justify-content:center !important; }
+
+  /* HOW TO BUY — force one column */
+  .steps{ display:grid !important; grid-template-columns:1fr !important; gap:14px !important; }
+  .step{ padding:16px !important; border-radius:16px !important; }
+
+  /* ROADMAP — force one column */
+  .roadmap .grid{ display:grid !important; grid-template-columns:1fr !important; gap:14px !important; }
+  .roadmap .card{ min-height:0 !important; padding:16px !important; border-radius:16px !important; }
+
+  /* TOKENOMICS — stack table into labeled cards */
+  .tokey table, .tokey thead, .tokey tbody, .tokey th, .tokey td, .tokey tr{
+    display:block !important; width:100% !important;
+  }
+  .tokey thead{ display:none !important; }
+  .tokey tr{
+    margin:0 0 12px !important;
+    background:#0f141c !important;
+    border:1px solid rgba(255,255,255,.10) !important;
+    border-radius:14px !important;
+    overflow:hidden !important;
+    box-shadow:0 10px 24px rgba(0,0,0,.35) !important;
+  }
+  .tokey td{ border-top:none !important; padding:10px 12px !important; }
+  .tokey td::before{
+    content:attr(data-label) !important;
+    display:block !important; font-weight:700 !important;
+    color:#e9f1ff !important; opacity:.9 !important; margin-bottom:2px !important;
+  }
+
+  /* footer clearance (so it never feels cramped) */
+  footer{ padding:32px 0 80px !important; }
+}
+
+/* ---------- small/mid tablets (721–1024px) ---------- */
+@media (min-width:721px) and (max-width:1024px){
+  .container{ padding:0 20px !important; }
+
+  /* stack sooner so 2-up doesn’t squeeze */
+  .steps{ display:grid !important; grid-template-columns:1fr !important; gap:16px !important; }
+  .roadmap .grid{ display:grid !important; grid-template-columns:1fr !important; gap:16px !important; }
+
+  /* keep tokenomics as table but increase contrast */
+  .tokey table{ background:#0f141c !important; border:1px solid rgba(255,255,255,.10) !important; }
+  .tokey thead th{ color:#e9f1ff !important; }
+  .tokey td{ color:#d3e2f0 !important; }
+}
+
+/* motion-safety */
+@media (prefers-reduced-motion:reduce){
+  .hero .giant::after, .hero-visual .mascot, .hero-art .mascot, body::before{ animation:none !important; }
+}
