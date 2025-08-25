@@ -573,3 +573,18 @@ th{text-align:left; color:var(--muted); font-size:13px}
   .footer-top{ flex-wrap: wrap; gap: 16px; }
   .footer .links{ gap: 16px; }
 }
+
+
+.footer .footer-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+@media (max-width: 640px) {
+  .footer .footer-logo {
+    width: 28px; /* Slightly smaller for mobile */
+    height: 28px;
+  }
+}
