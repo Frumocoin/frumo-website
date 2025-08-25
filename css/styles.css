@@ -509,3 +509,67 @@ th{text-align:left; color:var(--muted); font-size:13px}
   .footer .brand{ gap: 10px; }
 }
 
+
+
+/* Footer: make brand + links share the same centerline as © */
+.footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+/* New wrapper: center as a single unit */
+.footer-top{
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* <- guarantees shared center with © line */
+  gap: 28px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Brand row */
+.footer .brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer .brand img,
+.footer .brand svg{
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* Links row */
+.footer .links{
+  display: inline-flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Kill any legacy layout that might fight the centering */
+.footer .brand,
+.footer .links{
+  float: none !important;
+  grid-area: auto !important;
+  justify-self: center !important;
+  place-self: center !important;
+  width: auto !important;          /* shrink-to-content */
+  margin: 0 !important;
+}
+
+/* Copyright line */
+.footer .legal{
+  margin: 0;
+  opacity: .9;
+}
+
+/* Mobile tidy */
+@media (max-width: 640px){
+  .footer-top{ flex-wrap: wrap; gap: 16px; }
+  .footer .links{ gap: 16px; }
+}
