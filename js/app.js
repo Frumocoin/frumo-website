@@ -101,6 +101,20 @@
   });
 })();
 
+
+// Tokenomics: add data-labels so stacked mobile cards show headings
+(() => {
+  const table = document.querySelector('.tokey table');
+  if (!table) return;
+  const headers = [...table.querySelectorAll('thead th')].map((th) => th.textContent.trim());
+  table.querySelectorAll('tbody tr').forEach((tr) => {
+    [...tr.children].forEach((td, i) => {
+      if (!td.hasAttribute('data-label') && headers[i]) td.setAttribute('data-label', headers[i]);
+    });
+  });
+})();
+
+
 // Mobile burger toggle
 (() => {
   const nav = document.querySelector('.site-nav');

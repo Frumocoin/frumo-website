@@ -774,3 +774,81 @@ img,svg,canvas{ max-width:100%; height:auto; }
 
 /* Safety: images never overflow */
 img, svg, canvas{ max-width:100%; height:auto; }
+
+
+/* ==== FRUMO: mobile & tablet rescue (append-only) ==== */
+
+/* Global readability on dark cards/tables */
+.card, .panel, .step, .tokey table, .tokey td, .tokey th { color:#e9f1ff; }
+.card p, .panel p, .step p, .tokey td { color:#c8d5e3; }
+
+/* Images never overflow */
+img,svg,canvas,video{ max-width:100%; height:auto; }
+
+/* ----- Phones (<=720px) ----- */
+@media (max-width:720px){
+  .container{ padding:0 16px; }
+  .section{ padding:40px 0; }
+  .section .container > * + *{ margin-top:20px; }
+
+  /* Hero sizing & spacing */
+  .hero{ padding-top:28px; }
+  .hero .giant{ font-size:clamp(38px,16vw,62px); letter-spacing:.12em; }
+  .hero-visual,.hero-art{ margin-top:16px; }
+  .hero-visual .mascot,.hero-art .mascot{
+    width:min(420px,78vw);
+    filter:drop-shadow(0 12px 24px rgba(0,0,0,.45));
+  }
+
+  /* CTAs stack and fill width */
+  .hero-cta,.actions,.cta-row{ gap:10px; }
+  .btn{ width:100%; height:44px; justify-content:center; }
+
+  /* How to Buy / steps -> one column */
+  .steps{ display:grid; grid-template-columns:1fr; gap:14px; }
+  .step{ padding:16px; border-radius:16px; }
+
+  /* Roadmap -> one column */
+  .roadmap .grid{ display:grid; grid-template-columns:1fr; gap:14px; }
+  .roadmap .card{ min-height:0; padding:16px; border-radius:16px; }
+
+  /* Tokenomics table → stacked cards with labels */
+  .tokey table, .tokey thead, .tokey tbody, .tokey th, .tokey td, .tokey tr{ display:block; width:100%; }
+  .tokey thead{ display:none; }
+  .tokey tr{
+    margin:0 0 12px;
+    background:#0f141c;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 10px 24px rgba(0,0,0,.35);
+  }
+  .tokey td{ border-top:none !important; padding:10px 12px; }
+  .tokey td::before{
+    content:attr(data-label);
+    display:block; font-weight:700; opacity:.9; margin-bottom:2px; color:#e9f1ff;
+  }
+
+  /* Footer */
+  footer{ padding:32px 0 72px; }
+}
+
+/* ----- Small/Mid tablets (721–1024px) ----- */
+@media (min-width:721px) and (max-width:1024px){
+  .container{ padding:0 20px; }
+
+  /* Stack sooner to avoid cramped two-up */
+  .steps{ display:grid; grid-template-columns:1fr; gap:16px; }
+  .roadmap .grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+
+  /* Tokenomics: keep table, increase contrast */
+  .tokey table{ background:#0f141c; border:1px solid rgba(255,255,255,.10); }
+  .tokey thead th{ color:#e9f1ff; }
+  .tokey td{ color:#d3e2f0; }
+}
+
+/* Safety for motion-sensitive users */
+@media (prefers-reduced-motion:reduce){
+  .hero .giant::after,.hero-visual .mascot,.hero-art .mascot, body::before{ animation:none !important; }
+}
+
