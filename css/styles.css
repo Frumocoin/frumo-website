@@ -701,3 +701,76 @@ img,svg,canvas{ max-width:100%; height:auto; }
   .nav-links{ display:none; position:absolute; left:0; right:0; top:56px; padding:10px 16px; background:#0b0f15; border-bottom:1px solid rgba(255,255,255,.06); }
   .site-nav.open .nav-links{ display:block; }
 }
+
+/* --- Mobile / Tablet rescue --- */
+
+/* Base readability on dark panels */
+.card.panel, .step, .tokey table, .tokey td, .tokey th {
+  color: #e9f1ff;
+}
+.card.panel p, .step p, .tokey td {
+  color: #c6d3e1;
+}
+
+/* Phones: <= 720px */
+@media (max-width: 720px){
+  .container{ padding: 0 16px; }
+  .section{ padding: 40px 0; }
+  .section .container > * + *{ margin-top: 20px; }
+
+  /* Hero sizing */
+  .hero{ padding-top: 28px; }
+  .hero .giant{ font-size: clamp(38px, 16vw, 62px); letter-spacing: .12em; }
+  .hero-visual,.hero-art{ margin-top: 16px; }
+  .hero-visual .mascot,.hero-art .mascot{
+    width: min(420px, 78vw);
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,.45));
+  }
+
+  /* Buttons: full-width, comfortable tap targets */
+  .hero-cta, .actions, .cta-row { gap: 10px; }
+  .btn{ width:100%; height:44px; justify-content:center; }
+
+  /* Steps & roadmap: 1 column */
+  .steps{ display:grid; grid-template-columns: 1fr; gap: 14px; }
+  .step{ padding: 16px; border-radius: 16px; }
+  .roadmap .grid{ display:grid; grid-template-columns: 1fr; gap: 14px; }
+  .roadmap .card{ min-height: 0; padding: 16px; border-radius: 16px; }
+
+  /* Tokenomics table → stacked cards */
+  .tokey table, .tokey thead, .tokey tbody, .tokey th, .tokey td, .tokey tr{ display:block; width:100%; }
+  .tokey thead{ display:none; }
+  .tokey tr{
+    margin: 0 0 12px;
+    background:#0f141c;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  }
+  .tokey td{ border-top:none !important; padding: 10px 12px; }
+  .tokey td::before{
+    content: attr(data-label);
+    display:block; font-weight:700; opacity:.85; margin-bottom: 2px; color:#e9f1ff;
+  }
+
+  /* Footer space so nothing overlaps */
+  footer{ padding: 32px 0 72px; }
+}
+
+/* Tablets: 721–1024px (Galaxy Tab / iPad portrait) */
+@media (min-width:721px) and (max-width:1024px){
+  .container{ padding: 0 20px; }
+
+  /* Stack sooner on tablet to avoid cramped 2-up */
+  .steps{ display:grid; grid-template-columns: 1fr; gap:16px; }
+  .roadmap .grid{ display:grid; grid-template-columns: 1fr; gap:16px; }
+
+  /* Tokenomics: keep table, but increase contrast */
+  .tokey table{ background:#0f141c; border:1px solid rgba(255,255,255,.10); }
+  .tokey thead th{ color:#e9f1ff; }
+  .tokey td{ color:#cfe0f0; }
+}
+
+/* Safety: images never overflow */
+img, svg, canvas{ max-width:100%; height:auto; }
