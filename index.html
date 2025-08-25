@@ -470,5 +470,69 @@ Now, Frumo has leapt beyond that quiet valley, hopping into the hearts of people
 </script>
 
 
+<style id="FRUMO_TOP_VISIBILITY_FIX">
+/* 1) Put ALL hero/early-section content above backgrounds */
+header, .site-nav, .hero, .hero * , #about, #about * , #howto, #howto * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 2) Push ALL background effects behind, disable click-through */
+.bg-wrap, .bg, .background, .stars, .starfield, canvas.bg, #bg, .hero::before, .hero::after {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 3) Kill any blend/shine overlays that can make text transparent on mobile */
+.hero .giant,
+.hero h1 {
+  /* Stop gradient/clipped text from rendering transparent */
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  mix-blend-mode: normal !important;
+  color: #EAF2FF !important;
+  text-shadow: none !important;
+}
+@media (max-width: 720px){
+  .hero .giant::after, .hero h1::after { display: none !important; }
+}
+
+/* 4) Ensure core heading/body text is visible in early sections */
+header, .site-nav, .hero, #about, #howto {
+  color: #EAF2FF !important;
+}
+header p, .hero p, #about p, #howto p,
+header li, .hero li, #about li, #howto li {
+  color: #CFE0F0 !important;
+}
+
+/* 5) Prevent sticky nav from covering first content row */
+html { scroll-padding-top: 96px; }
+section[id] { scroll-margin-top: 96px; }
+
+/* 6) Safety: images never overflow; hero spacing for mobile */
+img, svg, canvas { max-width: 100% !important; height: auto !important; }
+@media (max-width: 720px){
+  .hero { padding-top: 28px !important; }
+}
+
+/* 7) If there is any overlay/scrim on hero, tone it down */
+.hero .overlay, .hero .scrim, .hero .veil {
+  opacity: .35 !important;
+  mix-blend-mode: normal !important;
+}
+
+/* 8) If a full-screen backdrop filters above content, put it behind */
+[class*="backdrop"], [class*="blur"] {
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+</style>
+
+
 </body>
 </html>
